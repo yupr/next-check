@@ -1,8 +1,25 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import "../styles/globals.css";
+import type { AppProps } from "next/app";
+import React, { useState, Dispatch, SetStateAction } from "react";
+import { createContext } from "react";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
-}
+export const Context = createContext<{
+  text: String;
+  setText: Dispatch<SetStateAction<string>>;
+}>({} as any);
 
-export default MyApp
+const App = ({ Component, pageProps }: AppProps) => {
+  const [text, setText] = useState("");
+  const value = {
+    text,
+    setText,
+  };
+
+  return (
+    <Context.Provider value={value}>
+      <Component {...pageProps} />
+    </Context.Provider>
+  );
+};
+
+export default App;
