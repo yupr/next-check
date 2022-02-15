@@ -3,13 +3,26 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useEffect } from 'react'
 import styles from '../styles/Home.module.scss'
+import Loading from '../components/loading'
+import React, { useState } from "react";
+
 
 const Home: NextPage = () => {
+  const [isVisible, setIsVisible] = useState(true)
+
   useEffect(() =>{
     console.log('env', process.env.customKey)
+    console.log('isVisible_', isVisible)
+
+    setTimeout(() => {
+      setIsVisible(false)
+    }, 3000);
   }, [])
 
+  if(isVisible) return <Loading isVisible={isVisible}/>
+
   return (
+    <>
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
@@ -71,6 +84,7 @@ const Home: NextPage = () => {
         </a>
       </footer>
     </div>
+    </>
   )
 }
 
