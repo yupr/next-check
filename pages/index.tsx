@@ -1,25 +1,20 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import { useEffect } from 'react'
 import styles from '../styles/Home.module.scss'
-import Loading from '../components/loading'
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const Home: NextPage = () => {
-  const [isVisible, setIsVisible] = useState(true)
-
-  useEffect(() =>{
-    console.log('env', process.env.customKey)
-    console.log('isVisible_', isVisible)
-
-    setTimeout(() => {
-      setIsVisible(false)
-    }, 3000);
+  useEffect(() => {
+    const getData = async() =>{
+      const res = await axios.get('/api/sample');
+      const res2 = await axios.get('/api/menus/test');
+      console.log('res', res.data, res2.data)
+    }
+    getData()
   }, [])
 
-  if(isVisible) return <Loading isVisible={isVisible}/>
 
   return (
     <>
