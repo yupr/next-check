@@ -1,8 +1,8 @@
-import React from "react";
-import { Oval } from "react-loader-spinner";
-import styles from './index.module.scss'
+import React from 'react';
+import { Oval } from 'react-loader-spinner';
+import styles from './index.module.scss';
 
-const Loading = ({isVisible}: any) => {
+const Loading = ({ isVisible }: any) => {
   return (
     <div className={styles.loading}>
       <Oval

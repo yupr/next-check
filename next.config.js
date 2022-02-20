@@ -3,6 +3,6 @@ module.exports = {
   productionBrowserSourceMaps: true,
   reactStrictMode: true,
   env: {
-    customKey: 'my-value'
-  }
-}
+    customKey: 'my-value',
+  },
+};

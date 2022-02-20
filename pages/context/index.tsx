@@ -1,16 +1,16 @@
-import React, { useContext, useEffect } from "react";
-import { Context } from "../_app";
+import React, { useContext, useEffect } from 'react';
+import { Context } from '../_app';
 
 const ContextCheck = () => {
   const { text, setText } = useContext(Context);
 
   useEffect(() => {
-    console.log("text", text);
+    console.log('text', text);
     return () => {};
   }, [text]);
 
   const changeText = () => {
-    setText("changed");
+    setText('changed');
   };
 
   return (

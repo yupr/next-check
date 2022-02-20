@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { useRouter } from "next/router";
-import styles from "./index.module.scss";
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import styles from './index.module.scss';
 
 const Query = () => {
   const router = useRouter();
@@ -8,14 +8,14 @@ const Query = () => {
 
   useEffect(() => {
     router.replace({
-      pathname: "/query",
+      pathname: '/query',
       query: { step: 1 },
     });
   }, []);
 
   const toNext = () => {
     router.push({
-      pathname: "/query",
+      pathname: '/query',
       query: { step: Number(step) + 1 },
     });
   };
