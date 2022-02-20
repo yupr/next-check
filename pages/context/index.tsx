@@ -6,7 +6,6 @@ const ContextCheck = () => {
 
   useEffect(() => {
     console.log('text', text);
-    return () => {};
   }, [text]);
 
   const changeText = () => {
