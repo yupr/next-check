@@ -16,8 +16,8 @@ type ItemType = {
 const List = () => {
   const [checkedList, setCheckedList] = useState<ItemType>([]);
 
-  const onChange = (event: any, item: { id: number; name: string }) => {
-    const isChecked = event.target.checked;
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>, item: { id: number; name: string }) => {
+    const isChecked = event.currentTarget.checked;
     let updateList = [...checkedList];
 
     if (isChecked) {
@@ -33,8 +33,8 @@ const List = () => {
     setCheckedList(updateList);
   };
 
-  const Batch = (event: any) => {
-    const isChecked = event.target.checked;
+  const Batch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const isChecked = event.currentTarget.checked;
     if (isChecked) {
       setCheckedList([...Items]);
     } else {

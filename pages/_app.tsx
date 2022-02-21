@@ -3,10 +3,12 @@ import type { AppProps } from 'next/app';
 import React, { useState, Dispatch, SetStateAction } from 'react';
 import { createContext } from 'react';
 
-export const Context = createContext<{
+interface ContextInterface {
   text: string;
   setText: Dispatch<SetStateAction<string>>;
-}>({} as any);
+}
+
+export const Context = createContext({} as ContextInterface);
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [text, setText] = useState('');

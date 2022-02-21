@@ -2,7 +2,7 @@ import React from 'react';
 import { Oval } from 'react-loader-spinner';
 import styles from './index.module.scss';
 
-const Loading = ({ isVisible }: any) => {
+const Loading = (isVisible: boolean) => {
   return (
     <div className={styles.loading}>
       <Oval
