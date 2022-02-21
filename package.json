@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint '**/*.{ts,tsx}'",
-    "fmt": "prettier --write '**/*.{js,jsx,ts,tsx}'"
+    "fmt": "prettier --write '**/*.{css,scss,js,jsx,ts,tsx}'"
   },
   "dependencies": {
     "axios": "^0.26.0",

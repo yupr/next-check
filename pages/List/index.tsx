@@ -8,8 +8,13 @@ const Items = [
   { id: 4, name: 'item4' },
 ];
 
+type ItemType = {
+  id: number;
+  name: string;
+}[];
+
 const List = () => {
-  const [checkedList, setCheckedList] = useState<any | object>([]);
+  const [checkedList, setCheckedList] = useState<ItemType>([]);
 
   const onChange = (event: any, item: { id: number; name: string }) => {
     const isChecked = event.target.checked;
@@ -67,7 +72,7 @@ const List = () => {
 
         <div>
           <p>選択したアイテム</p>
-          {checkedList.map((list: any) => {
+          {checkedList.map((list) => {
             return (
               <div key={list.id}>
                 <span>{list.name}</span>
