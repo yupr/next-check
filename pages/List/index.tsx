@@ -16,7 +16,10 @@ type ItemType = {
 const List = () => {
   const [checkedList, setCheckedList] = useState<ItemType>([]);
 
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>, item: { id: number; name: string }) => {
+  const onChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    item: { id: number; name: string }
+  ) => {
     const isChecked = event.currentTarget.checked;
     let updateList = [...checkedList];
 
