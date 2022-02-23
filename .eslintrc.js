@@ -14,9 +14,7 @@ module.exports = {
     'next/core-web-vitals',
     'prettier',
   ],
-  plugins: ['unused-imports'],
   rules: {
-    '@typescript-eslint/no-unused-vars': 'off',
-    'unused-imports/no-unused-imports': 'error',
+    '@typescript-eslint/no-unused-vars': 'error',
   },
 };
