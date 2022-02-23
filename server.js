@@ -1,7 +1,3 @@
-// add package
-// yarn add express http-proxy-middleware
-// add package.json scripts ⇨ "dev:custom": "node server.js",
-
 const express = require('express');
 const next = require('next');
 const { createProxyMiddleware } = require('http-proxy-middleware');
