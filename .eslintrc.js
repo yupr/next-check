@@ -1,9 +1,6 @@
 module.exports = {
   root: true,
   parserOptions: {
-    // extends で指定している
-    // plugin:@typescript-eslint/recommended-requiring-type-checking
-    // に対して型情報を提供するため tsconfig.json の場所を指定。
     project: './tsconfig.json',
   },
   extends: [
