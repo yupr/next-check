@@ -14,7 +14,7 @@ const Validation = () => {
     formState: { errors },
   } = useForm<formInput>();
 
-  const onSubmit: SubmitHandler<formInput> = data => console.log(data);
+  const onSubmit: SubmitHandler<formInput> = (data) => console.log(data);
 
   // getValuesで取得したデータは、watchと異なりデータの監視を常に行う訳ではないので、
   // 最新のデータを取得したい場合、getValuesを定義し直さないと再取得できない。(getValuesでデータを取りたい場合)

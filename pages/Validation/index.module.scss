@@ -1,6 +1,5 @@
-.validation{
-
-  form{
+.validation {
+  form {
     max-width: 500px;
     margin: 0 auto;
     height: auto;
@@ -12,24 +11,24 @@
     border-radius: 4px;
   }
 
-  &__input{
+  &__input {
     border: 1px solid black;
     padding: 15px 15px;
     margin-bottom: 50px;
   }
 
-  &__errors{
+  &__errors {
     display: flex;
     flex-direction: column;
   }
 
-  &__submit{
+  &__submit {
     margin-top: 100px;
     padding: 20px;
     background: #ec5990;
     color: white;
 
-    &:hover{
+    &:hover {
       background: #bf1650;
     }
   }

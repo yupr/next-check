@@ -43,9 +43,7 @@ const Home: NextPage = () => {
             <Link href="/Validation">
               <a className={styles.card}>
                 <h2>Validation &rarr;</h2>
-                <p>
-                  For check react-hook-form
-                </p>
+                <p>For check react-hook-form</p>
               </a>
             </Link>
           </div>
