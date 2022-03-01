@@ -40,15 +40,14 @@ const Home: NextPage = () => {
               </a>
             </Link>
 
-            {/* <Link href="/List">
+            <Link href="/Validation">
               <a className={styles.card}>
-                <h2>Deploy &rarr;</h2>
+                <h2>Validation &rarr;</h2>
                 <p>
-                  Instantly deploy your Next.js site to a public URL with
-                  Vercel.
+                  For check react-hook-form
                 </p>
               </a>
-            </Link> */}
+            </Link>
           </div>
         </main>
 
