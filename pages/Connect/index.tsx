@@ -3,13 +3,17 @@ import React, { useEffect } from 'react';
 
 const Connect = () => {
   useEffect(() => {
-    const test = async (): Promise<void> => {
-      const result = await instance.get(
-        'https://api.github.com/users/hadley/orgs'
-      );
-      console.log('result', result);
-    };
-    void test();
+    try {
+      const fetch = async () => {
+        const result = await instance.get(
+          'https://api.github.com/users/hadley/orgs'
+        );
+        console.log('result', result);
+      };
+      void fetch();
+    } catch (err) {
+      console.log('err', err);
+    }
   }, []);
 
   return <div>check api response</div>;
