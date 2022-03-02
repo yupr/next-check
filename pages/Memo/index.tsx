@@ -1,4 +1,4 @@
-import React, { useState, useCallback, memo } from "react";
+import React, { useState, useCallback, memo } from 'react';
 
 // memo, useCallback によるチューニング
 
@@ -26,35 +26,32 @@ type CountProps = {
 // 再生成された関数を react.memo が別の関数と認識したため、useCallBackを用いて関数のキャッシュを行う必要がある。
 
 const Title = memo(() => {
-  console.log("Title component");
-  return (
-    <h2>useCallBackTest vol.1</h2>
-  );
+  console.log('Title component');
+  return <h2>useCallBackTest vol.1</h2>;
 });
 Title.displayName = 'Title';
 
-
 const Count: React.FC<CountProps> = memo(({ text, countState }: CountProps) => {
-  console.log("Count child component", text, countState);
+  console.log('Count child component', text, countState);
   return (
     <p>
       {text}:{countState}
     </p>
   );
 });
-Count.displayName = 'Count'
+Count.displayName = 'Count';
 
-
-const Button: React.FC<ButtonProps> = memo(({ handleClick, value }: ButtonProps) => {
-  console.log("Button child component", value);
-  return (
-    <button type="button" onClick={handleClick}>
-      {value}
-    </button>
-  );
-});
+const Button: React.FC<ButtonProps> = memo(
+  ({ handleClick, value }: ButtonProps) => {
+    console.log('Button child component', value);
+    return (
+      <button type="button" onClick={handleClick}>
+        {value}
+      </button>
+    );
+  }
+);
 Button.displayName = 'Button';
-
 
 const Memo = () => {
   const [firstCountState, setFirstCountState] = useState(0);
@@ -64,17 +61,17 @@ const Memo = () => {
     setFirstCountState(firstCountState + 1);
   }, [firstCountState]);
 
-  const incrementSecondCounter = useCallback(() =>{
-    setSecondCountState(secondCountState + 10)
-  }, [secondCountState])
+  const incrementSecondCounter = useCallback(() => {
+    setSecondCountState(secondCountState + 10);
+  }, [secondCountState]);
 
   return (
     <>
       <Title />
       <Count text="+ 1 ボタン" countState={firstCountState} />
       <Count text="+ 10 ボタン" countState={secondCountState} />
-      <Button handleClick={incrementFirstCounter} value={"+1 ボタン"} />
-      <Button handleClick={incrementSecondCounter} value={"+10 ボタン"} />
+      <Button handleClick={incrementFirstCounter} value={'+1 ボタン'} />
+      <Button handleClick={incrementSecondCounter} value={'+10 ボタン'} />
     </>
   );
 };
