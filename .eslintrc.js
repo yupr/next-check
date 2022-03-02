@@ -6,6 +6,7 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
+    // これ入れたらライブラリの型まで文句言われてしまって詰んだのでとりあえずオフ
     // 'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'next',
     'next/core-web-vitals',
