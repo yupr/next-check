@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  useQuery,
-} from 'react-query';
+import { useQuery } from 'react-query';
 
 const fetchUsers = async () => {
   const res = await fetch('https://jsonplaceholder.typicode.com/users');
@@ -11,18 +9,17 @@ const fetchUsers = async () => {
 const Connect = () => {
   const { data, isLoading, isError, error } = useQuery('users', fetchUsers);
 
-  console.log('data', data, isError)
+  console.log('data', data, isError);
 
   //undefined対応: isLoadingがfalseになるまでmap関数を実行しない。(下記tsxがレンダリングされない)
-  if(isLoading){
-    return <span>Loading...</span>
+  if (isLoading) {
+    return <span>Loading...</span>;
   }
 
   //エラー対応
-  if(isError){
+  if (isError) {
     return <span>Error: {error.message}</span>;
   }
-
 
   return (
     <div>
