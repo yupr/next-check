@@ -35,7 +35,7 @@ const Home: NextPage = () => {
 
             <Link href="/Connect">
               <a className={styles.card}>
-                <h2>Api &rarr;</h2>
+                <h2>React-Query &rarr;</h2>
                 <p>For check api connect</p>
               </a>
             </Link>
