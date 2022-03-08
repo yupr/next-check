@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.26.0",
+    "classnames": "^2.3.1",
     "express": "^4.17.3",
     "http-proxy-middleware": "^2.0.3",
     "morgan": "^1.10.0",
