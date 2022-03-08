@@ -68,7 +68,9 @@ const List = () => {
                 type="checkbox"
                 checked={isChecked(item)}
               />
-              <li className={styles.list__item} data-item-color="blue">{item.name}</li>
+              <li className={styles.list__item} data-item-color="blue">
+                {item.name}
+              </li>
             </div>
           );
         })}
