@@ -1,5 +1,6 @@
 import React from 'react';
 import { useQuery } from 'react-query';
+import { UserData } from '@/src/types'
 
 const fetchUsers = async () => {
   const res = await fetch('https://jsonplaceholder.typicode.com/users');
@@ -23,7 +24,7 @@ const Connect = () => {
     <div>
       <h2>ユーザ一覧</h2>
       <div>
-        {data.map((user) => (
+        {data.map((user: UserData) => (
           <div key={user.id}>{user.name}</div>
         ))}
       </div>
