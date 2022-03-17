@@ -20,4 +20,4 @@ export type UserData = {
   photo: string;
   username: string;
   website: string;
-}
+};

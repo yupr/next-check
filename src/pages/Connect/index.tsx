@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import { UserData } from '@/src/types'
+import { UserData } from '@/types';
 
 const fetchUsers = async () => {
   const res = await fetch('https://jsonplaceholder.typicode.com/users');
