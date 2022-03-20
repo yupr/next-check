@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Type = () =>{
-  return(
+const Type = () => {
+  return (
     <div>
       <p>types</p>
-      </div>
-  )
-}
+    </div>
+  );
+};
 export default Type;
