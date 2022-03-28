@@ -18,10 +18,9 @@ app.prepare().then(() => {
       logLevel: 'debug',
       changeOrigin: true,
       pathRewrite: {
-        '^/api': '/api/v1'
+        '^/api': '/api/v1',
         // '/api' ⇨ 'http://localhost:8000/api/v1'
-      }
-
+      },
     })
   );
 
