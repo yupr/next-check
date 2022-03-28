@@ -1,16 +1,17 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import { UserData } from '@/types';
+import axios from 'axios';
 
 const fetchUsers = async () => {
-  const res = await fetch('https://jsonplaceholder.typicode.com/users');
-  return res.json();
+  const { data } = await axios('https://jsonplaceholder.typicode.com/users');
+  return data;
 };
 
 const Connect = () => {
   const { data, isLoading, isError, error } = useQuery('users', fetchUsers);
 
-  //undefined対応: isLoadingがfalseになるまでmap関数を実行しない。(下記tsxがレンダリングされない)
+  // undefined対応: isLoadingがfalseになるまでmap関数を実行しない。(下記tsxがレンダリングされない)
   if (isLoading) {
     return <span>Loading...</span>;
   }

@@ -13,6 +13,7 @@ module.exports = {
     'prettier',
   ],
   rules: {
+    "semi": [ "error", "always" ],
     '@typescript-eslint/no-unused-vars': 'error',
     // "@typescript-eslint/no-unsafe-assignment": "off",
     // "@typescript-eslint/no-unsafe-call": "off",

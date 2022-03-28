@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "dev:custom": "node server.js",
+    "dev:local": "node server.js",
     "build": "next build",
     "start": "next start",
     "lint": "eslint '**/*.{ts,tsx}'",

@@ -12,11 +12,16 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
   server.use(
-    '/api/v1', // 設定したパスが含んだリクエストをプロキシする
+    '/api', // 設定したパスが含んだリクエストをプロキシする
     createProxyMiddleware({
       target: API_URL,
       logLevel: 'debug',
       changeOrigin: true,
+      pathRewrite: {
+        '^/api': '/api/v1'
+        // '/api' ⇨ 'http://localhost:8000/api/v1'
+      }
+
     })
   );
 
