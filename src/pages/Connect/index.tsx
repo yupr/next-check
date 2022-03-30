@@ -9,7 +9,7 @@ const fetchUsers = async () => {
 };
 
 const Connect = () => {
-  const { data, isLoading, isError, error } = useQuery('users', fetchUsers);
+  const { data, isLoading, isError, error } = useQuery<UserData[], Error>('users', fetchUsers);
 
   // undefined対応: isLoadingがfalseになるまでmap関数を実行しない。(下記tsxがレンダリングされない)
   if (isLoading) {
@@ -17,7 +17,7 @@ const Connect = () => {
   }
 
   //エラー対応
-  if (isError || !data) {
+  if (error && (isError || !data)) {
     return <span>Error: {error.message}</span>;
   }
 
@@ -25,7 +25,7 @@ const Connect = () => {
     <div>
       <h2>ユーザ一覧</h2>
       <div>
-        {data.map((user: UserData) => (
+        {data && data.map((user: UserData) => (
           <div key={user.id}>{user.name}</div>
         ))}
       </div>
