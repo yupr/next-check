@@ -2,8 +2,8 @@
   "name": "next-check",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "dev:local": "node server.js",
+    "dev": "next",
+    "dev:local": "node server/index.js",
     "build": "next build",
     "start": "next start",
     "lint": "eslint '**/*.{ts,tsx}'",

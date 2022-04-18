@@ -1,13 +1,6 @@
 import React, { useState } from 'react';
 import styles from './index.module.scss';
 
-const Items = [
-  { id: 1, name: 'item1' },
-  { id: 2, name: 'item2' },
-  { id: 3, name: 'item3' },
-  { id: 4, name: 'item4' },
-];
-
 type ItemType = {
   id: number;
   name: string;
@@ -15,6 +8,24 @@ type ItemType = {
 
 const List = () => {
   const [checkedList, setCheckedList] = useState<ItemType>([]);
+
+  const Items = [
+    { id: 1, name: 'item1' },
+    { id: 2, name: 'item2' },
+    { id: 3, name: 'item3' },
+    { id: 4, name: 'item4' },
+  ];
+
+  /** -------------------- todo: ロジック切り離す ---------------------------------------- */
+
+  const onChangeAll = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const isChecked = event.currentTarget.checked;
+    if (isChecked) {
+      setCheckedList([...Items]);
+    } else {
+      setCheckedList([]);
+    }
+  };
 
   const onChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -36,15 +47,6 @@ const List = () => {
     setCheckedList(updateList);
   };
 
-  const Batch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const isChecked = event.currentTarget.checked;
-    if (isChecked) {
-      setCheckedList([...Items]);
-    } else {
-      setCheckedList([]);
-    }
-  };
-
   const isChecked = (item: { id: number; name: string }) => {
     const result = checkedList.some(
       (checkedItem: { id: number; name: string }) => {
@@ -54,11 +56,13 @@ const List = () => {
     return result;
   };
 
+  /** -------------------------------------------------------------------------------- */
+
   return (
     <>
       <ul className={styles.list}>
-        <input type="checkbox" onChange={(event) => Batch(event)} />
-        <span>一括チェック on or off</span>
+        <input type="checkbox" onChange={(event) => onChangeAll(event)} />
+        <span>全て選択 / 解除</span>
 
         {Items.map((item) => {
           return (

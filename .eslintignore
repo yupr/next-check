@@ -1,6 +1,6 @@
 **/.next/**
 **/out/**
 
-server.js
+server/index.js
 
-/prototype/**
+prototype/**
