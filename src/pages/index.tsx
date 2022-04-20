@@ -40,16 +40,6 @@ const Home: NextPage = () => {
               </a>
             </Link>
 
-
-
-
-
-
-
-
-
-
-
             <Link href="/Validation">
               <a className={styles.card}>
                 <h2>Validation &rarr;</h2>
