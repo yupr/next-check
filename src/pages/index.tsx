@@ -46,6 +46,13 @@ const Home: NextPage = () => {
                 <p>For check react-hook-form</p>
               </a>
             </Link>
+
+            <Link href="/Pixi">
+              <a className={styles.card}>
+                <h2>Pixi</h2>
+                <p>render canvas</p>
+              </a>
+            </Link>
           </div>
         </main>
 

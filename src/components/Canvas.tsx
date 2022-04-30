@@ -1,16 +1,45 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import LabelView from '@/lib/labelVIew';
 
+let labelView: LabelView | null;
+
 const Canvas = () => {
+  // backendから返されるリソース
+  // const data = {};
+
+  const ref = useRef(null);
+  const [name, setName] = useState('');
+
   useEffect(() => {
-    const data = new LabelView();
-    data.canvas();
-  }, []);
+    if (!ref.current) return;
+    // const label = new LabelView(ref.current);
+    labelView = new LabelView(ref.current);
+    return () => {
+      if (labelView) {
+        labelView.destroy();
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ref]);
+
+  useEffect(() => {
+    if (labelView) labelView.changeText(name);
+  }, [name]);
+
+  const onChangeName = (value: string) => {
+    setName(value);
+  };
 
   return (
     <>
-      <div className="canvas">{/* <div className="canvas__img" /> */}</div>
+      <div className="canvas" ref={ref} />
+
+      <div>
+        <p>名前入力</p>
+        <input type="text" onChange={(e) => onChangeName(e.target.value)} />
+      </div>
     </>
   );
 };
+
 export default Canvas;
