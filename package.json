@@ -6,6 +6,7 @@
     "dev:local": "node server/index.js",
     "build": "next build",
     "start": "next start",
+    "export": "next build && next export",
     "lint": "eslint '**/*.{ts,tsx}'",
     "fmt": "prettier --write '**/*.{css,scss,js,jsx,ts,tsx}'",
     "prepare": "husky install"
