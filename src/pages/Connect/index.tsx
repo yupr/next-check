@@ -1,4 +1,3 @@
-import React from 'react';
 import { useQuery } from 'react-query';
 import { UserData } from '@/types';
 import axios from 'axios';

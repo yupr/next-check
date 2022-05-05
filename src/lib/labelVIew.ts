@@ -46,6 +46,15 @@ class LabelView {
     const data = {
       containerSize: { width: 400, height: 200 },
       coordinate: { x: 130, y: 85 },
+
+      // パターン1: フロントで生成する画像より大きい場合
+      // containerSize: { width: 800, height: 400 },
+      // coordinate: { x: 260, y: 170 },
+
+      // パターン2: フロントで生成する画像より極端に小さい場合
+      // containerSize: { width: 100, height: 50 },
+      // coordinate: { x: 32.5, y: 21.25 },
+
       fontSize: 30,
     };
     // -----------------------------------------------------------------------------------------
