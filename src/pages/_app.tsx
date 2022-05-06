@@ -2,8 +2,9 @@ import '../styles/globals.scss';
 import type { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import React, { useState, Dispatch, SetStateAction } from 'react';
-import { createContext } from 'react';
+import { useState, Dispatch, SetStateAction, createContext } from 'react';
+import 'normalize.css';
+
 
 interface ContextInterface {
   text: string;
