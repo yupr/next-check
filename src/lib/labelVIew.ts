@@ -28,12 +28,13 @@ class LabelView {
 
   private textStyle: TextStyle;
 
-  private coordinate: { x: number; y: number };
+  private position: { x: number; y: number };
 
   private containerSize: { width: number; height: number };
 
   constructor(element: HTMLElement | null) {
     if (element) this.element = element;
+
     this.app = new Application();
     this.renderer = new Renderer({
       width: 800,
@@ -44,23 +45,24 @@ class LabelView {
 
     // backend側で生成した画像の情報を元に、アスペクト比を用いてフロントで描画する大きさ、座標に配置されるよう調整
     const data = {
-      containerSize: { width: 400, height: 200 },
-      coordinate: { x: 130, y: 85 },
+      // containerSize: { width: 400, height: 200 },
+      // position: { x: 130, y: 85 },
+      // fontSize: 30,
 
-      // パターン1: フロントで生成する画像より大きい場合
-      // containerSize: { width: 800, height: 400 },
-      // coordinate: { x: 260, y: 170 },
-
-      // パターン2: フロントで生成する画像より極端に小さい場合
+      // パターン1: フロントで生成する画像より極端に小さい場合
       // containerSize: { width: 100, height: 50 },
-      // coordinate: { x: 32.5, y: 21.25 },
+      // position: { x: 32.5, y: 21.25 },
+      // fontSize: 7.5,
 
-      fontSize: 30,
+      // パターン2: フロントで生成する画像より大きい場合
+      containerSize: { width: 800, height: 400 },
+      position: { x: 260, y: 170 },
+      fontSize: 60,
     };
     // -----------------------------------------------------------------------------------------
 
-    const { containerSize, coordinate, fontSize } = data;
-    this.coordinate = coordinate;
+    const { containerSize, position, fontSize } = data;
+    this.position = position;
     this.containerSize = containerSize;
 
     this.renderer.view.width = 600; // 横幅は固定
@@ -82,8 +84,11 @@ class LabelView {
   }
 
   setup() {
-    // 画像設定する前にキャッシュを削除。気休め程度
+    // 画像設定する前にキャッシュを削除
     utils.clearTextureCache();
+
+    // canvas要素を追加
+    this.element?.appendChild(this.renderer.view);
 
     const sprite = new Sprite(
       this.app.loader.resources['/img/bg_particles.png'].texture
@@ -92,16 +97,14 @@ class LabelView {
 
     // 座標指定
     this.nameText.x =
-      this.coordinate.x * (this.renderer.view.width / this.containerSize.width);
+      this.position.x * (this.renderer.view.width / this.containerSize.width);
     this.nameText.y =
-      this.coordinate.y * (this.renderer.view.width / this.containerSize.width);
+      this.position.y * (this.renderer.view.width / this.containerSize.width);
 
     this.container.addChild(sprite);
     this.container.addChild(this.nameText);
 
     this.renderer.render(this.container);
-    // canvas要素を追加
-    this.element?.appendChild(this.renderer.view);
   }
 
   // nameが変更されたらその都度 viewをいじる
@@ -118,9 +121,9 @@ class LabelView {
 
     // 座標指定
     this.nameText.x =
-      this.coordinate.x * (this.renderer.view.width / this.containerSize.width);
+      this.position.x * (this.renderer.view.width / this.containerSize.width);
     this.nameText.y =
-      this.coordinate.y * (this.renderer.view.width / this.containerSize.width);
+      this.position.y * (this.renderer.view.width / this.containerSize.width);
 
     this.container.addChild(this.nameText);
     this.renderer.render(this.container);
