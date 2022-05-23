@@ -1,147 +1,170 @@
 import {
-  Application,
   Renderer,
   Text,
   Container,
   Sprite,
   utils,
   TextStyle,
+  Texture,
 } from 'pixi.js';
 
-// type props = {
-// canvas: HTMLCanvasElement;
-// }
+import labelData from '../../label.json';
 
 /**
  * canvasを描画
  */
 class LabelView {
-  private app: Application;
-
   private renderer: Renderer;
 
   private container: Container;
 
   private element?: HTMLElement;
 
+  private sprite?: Sprite;
+
   private nameText?: Text;
-
-  private textStyle: TextStyle;
-
-  private position: { x: number; y: number };
 
   private containerSize: { width: number; height: number };
 
+  private xRatio: number;
+
   constructor(element: HTMLElement | null) {
     if (element) this.element = element;
+    utils.skipHello(); //Todo: what?
 
-    this.app = new Application();
     this.renderer = new Renderer({
-      width: 800,
-      height: 600,
+      width: 600,
+      height: 400,
       backgroundColor: 0x10bb99,
+      clearBeforeRender: true,
+      // antialias: true,
+      // resolution: 1
     });
     this.container = new Container();
-
-    // backend側で生成した画像の情報を元に、アスペクト比を用いてフロントで描画する大きさ、座標に配置されるよう調整
-    const data = {
-      // containerSize: { width: 400, height: 200 },
-      // position: { x: 130, y: 85 },
-      // fontSize: 30,
-
-      // パターン1: フロントで生成する画像より極端に小さい場合
-      // containerSize: { width: 100, height: 50 },
-      // position: { x: 32.5, y: 21.25 },
-      // fontSize: 7.5,
-
-      // パターン2: フロントで生成する画像より大きい場合
-      containerSize: { width: 800, height: 400 },
-      position: { x: 260, y: 170 },
-      fontSize: 60,
-    };
-    // -----------------------------------------------------------------------------------------
-
-    const { containerSize, position, fontSize } = data;
-    this.position = position;
-    this.containerSize = containerSize;
-
-    this.renderer.view.width = 600; // 横幅は固定
-    this.renderer.view.height =
-      (this.renderer.view.width / this.containerSize.width) *
-      this.containerSize.height;
-
-    this.textStyle = new TextStyle({
-      fontSize:
-        fontSize * (this.renderer.view.width / this.containerSize.width),
-      fontWeight: 'normal',
-      fill: '#a9a49b',
-    });
-
-    // 画像を読み込む
-    this.app.loader.add('/img/bg_particles.png').load(() => {
-      this.setup();
-    });
-  }
-
-  setup() {
-    // 画像設定する前にキャッシュを削除
-    utils.clearTextureCache();
-
-    // canvas要素を追加
+    this.container.sortableChildren = true; // zIndexの有効化
     this.element?.appendChild(this.renderer.view);
 
-    const sprite = new Sprite(
-      this.app.loader.resources['/img/bg_particles.png'].texture
-    );
-    this.nameText = new Text('Your Name', this.textStyle);
+    this.containerSize = labelData.container.size;
+    this.xRatio = this.renderer.view.width / this.containerSize.width; //リサイズ後と元画像の枠の幅の比率
 
-    // 座標指定
-    this.nameText.x =
-      this.position.x * (this.renderer.view.width / this.containerSize.width);
-    this.nameText.y =
-      this.position.y * (this.renderer.view.width / this.containerSize.width);
+    // window.addEventListener('resize', () => {
+    //   this.resize();
+    // });
 
-    this.container.addChild(sprite);
-    this.container.addChild(this.nameText);
+    this.keepAspectResize();
 
-    this.renderer.render(this.container);
+    requestAnimationFrame(() => {
+      this.render();
+    });
+
+    this.load();
   }
 
-  // nameが変更されたらその都度 viewをいじる
+  render() {
+    if (this.renderer.view) {
+      requestAnimationFrame(() => {
+        this.render();
+      });
+      this.renderer.render(this.container);
+    }
+  }
+
+  load() {
+    const sprite = new Sprite(Texture.from('/img/bg_particles.png'));
+    sprite.width = 100;
+    sprite.height = 50;
+    sprite.position.set(100, 30);
+    this.container.addChild(sprite);
+
+    // sprite = new Sprite(Texture.from('/img/cat.jpeg'));
+    // sprite.width = 64;
+    // sprite.height = 96;
+    // sprite.position.set(30, 30);
+    // sprite.zIndex = 1;
+    // this.container.addChild(sprite);
+
+    // sprite = new Sprite(Texture.from('/img/hana.jpeg'));
+    // sprite.width = 64;
+    // sprite.height = 96;
+    // sprite.position.set(0, 0);
+    // sprite.zIndex = -1;
+    // this.container.addChild(sprite);
+
+    // 初期表示はキャッシュを残しておく必要がないので、sprite表示後明示的ににクリア
+    utils.clearTextureCache();
+  }
+
+  select(src: string) {
+    const imageList = ['/img/hana.jpeg'];
+    const newImageList = [...imageList, src];
+
+    if (this.sprite) {
+      this.sprite.destroy();
+    }
+
+    this.container.children.forEach((child: any, index) => {
+      const cachId = child.texture?.textureCacheIds[0];
+      if (cachId && newImageList.includes(cachId)) {
+        this.container.children[index].destroy();
+      }
+    });
+
+    newImageList.forEach((imgSrc, index) => {
+      this.sprite = new Sprite(Texture.from(imgSrc));
+      this.sprite.width = 64;
+      this.sprite.height = 96;
+      this.sprite.position.x = (index + 1) * 3 * 30;
+      this.container.addChild(this.sprite);
+    });
+  }
+
   changeText(_name: string) {
-    if (this.nameText && !this.nameText.destroyed) {
+    if (this.nameText) {
       this.nameText.destroy();
     }
 
-    if (_name.length === 0) {
-      this.nameText = new Text('Your Name', this.textStyle);
-    } else {
-      this.nameText = new Text(_name, { fill: 'green' });
-    }
-
-    // 座標指定
-    this.nameText.x =
-      this.position.x * (this.renderer.view.width / this.containerSize.width);
-    this.nameText.y =
-      this.position.y * (this.renderer.view.width / this.containerSize.width);
-
+    const { fontSize, position } = labelData.items.nickname;
+    const textStyle = new TextStyle({
+      fontSize: fontSize * this.xRatio,
+      fontWeight: 'normal',
+      fill: _name === '' ? '#a9a49b' : 'black',
+    });
+    this.nameText = new Text(_name === '' ? 'Your Name' : _name, textStyle);
+    this.nameText.x = position.x * this.xRatio;
+    this.nameText.y = position.y * this.xRatio;
     this.container.addChild(this.nameText);
-    this.renderer.render(this.container);
   }
 
-  // キャッシュ周り削除
+  // 縦横比を保ったまま矩形の大きさに合わせてリサイズ
+  keepAspectResize() {
+    // 矩形の大きさを指定
+    const borderWidth = 600;
+    const borderHeight = 500;
+
+    // 元画像の大きさ対する矩形の幅、高さの比率
+    const ratio = Math.min(
+      borderWidth / this.containerSize.width,
+      borderHeight / this.containerSize.height
+    );
+
+    const resizeWidth = Math.round(ratio * this.containerSize.width);
+    const resizeHeight = Math.round(ratio * this.containerSize.height);
+
+    if (this.renderer.view) {
+      this.renderer.view.width = resizeWidth;
+      this.renderer.view.height = resizeHeight;
+
+      console.log('size', resizeWidth, resizeHeight, ratio);
+    }
+  }
+
   destroy() {
     if (this.container && !this.container.destroyed) {
       this.container.destroy();
     }
 
-    if (this.renderer.view) {
-      this.renderer.destroy();
-    }
-
-    // これ入れないとcanvas要素が重複して表示される。
-    if (this.app.loader) {
-      this.app.loader.destroy();
+    if (this.renderer) {
+      this.renderer.destroy(true);
     }
   }
 }
