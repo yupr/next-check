@@ -153,8 +153,6 @@ class LabelView {
     if (this.renderer.view) {
       this.renderer.view.width = resizeWidth;
       this.renderer.view.height = resizeHeight;
-
-      console.log('size', resizeWidth, resizeHeight, ratio);
     }
   }
 

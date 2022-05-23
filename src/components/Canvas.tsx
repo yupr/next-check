@@ -3,10 +3,7 @@ import LabelView from '@/lib/labelVIew';
 
 let labelView: LabelView | null;
 
-const imageList = [
-  {  src: 'img/cat.jpeg' },
-  {  src: '/img/times_square.jpg' },
-];
+const imageList = [{ src: 'img/cat.jpeg' }, { src: '/img/times_square.jpg' }];
 
 const Canvas = () => {
   const ref = useRef(null);
