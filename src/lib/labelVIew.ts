@@ -36,7 +36,7 @@ class LabelView {
       height: this.containerSize.height,
       backgroundColor: 0x10bb99,
       antialias: true,
-      resolution: 1
+      resolution: 1,
     });
     this.container = new Container();
     this.container.sortableChildren = true; // zIndexの有効化
