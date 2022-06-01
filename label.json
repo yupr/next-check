@@ -1,16 +1,16 @@
 {
   "container": {
     "size": {
-      "width": 800,
-      "height": 400
+      "width": 1024,
+      "height": 750
     }
   },
   "items": {
     "nickname": {
       "groupId": 1111,
       "position": {
-        "x": 260,
-        "y": 170
+        "x": 400,
+        "y": 375
       },
       "fontSize": 60
     }

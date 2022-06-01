@@ -20,44 +20,36 @@ class LabelView {
 
   private element?: HTMLElement;
 
-  private sprite?: Sprite;
+  private canvas: HTMLCanvasElement;
 
   private nameText?: Text;
 
   private containerSize: { width: number; height: number };
 
-  private xRatio: number;
-
   constructor(element: HTMLElement | null) {
-    if (element) this.element = element;
-    utils.skipHello(); //Todo: what?
+    this.element = element as HTMLElement;
+    utils.skipHello();
 
+    this.containerSize = labelData.container.size;
     this.renderer = new Renderer({
-      width: 600,
-      height: 400,
+      width: this.containerSize.width,
+      height: this.containerSize.height,
       backgroundColor: 0x10bb99,
-      clearBeforeRender: true,
-      // antialias: true,
-      // resolution: 1
+      antialias: true,
+      resolution: 1
     });
     this.container = new Container();
     this.container.sortableChildren = true; // zIndexの有効化
-    this.element?.appendChild(this.renderer.view);
 
-    this.containerSize = labelData.container.size;
-    this.xRatio = this.renderer.view.width / this.containerSize.width; //リサイズ後と元画像の枠の幅の比率
-
-    // window.addEventListener('resize', () => {
-    //   this.resize();
-    // });
+    this.canvas = this.renderer.view;
+    this.element?.appendChild(this.canvas);
 
     this.keepAspectResize();
 
     requestAnimationFrame(() => {
       this.render();
     });
-
-    this.load();
+    this.setup();
   }
 
   render() {
@@ -69,53 +61,13 @@ class LabelView {
     }
   }
 
-  load() {
-    const sprite = new Sprite(Texture.from('/img/bg_particles.png'));
-    sprite.width = 100;
-    sprite.height = 50;
-    sprite.position.set(100, 30);
+  setup() {
+    let sprite = new Sprite();
+    sprite = new Sprite(Texture.from('/img/times_square.jpg'));
+    sprite.width = 768;
+    sprite.height = 510;
+    sprite.zIndex = 1;
     this.container.addChild(sprite);
-
-    // sprite = new Sprite(Texture.from('/img/cat.jpeg'));
-    // sprite.width = 64;
-    // sprite.height = 96;
-    // sprite.position.set(30, 30);
-    // sprite.zIndex = 1;
-    // this.container.addChild(sprite);
-
-    // sprite = new Sprite(Texture.from('/img/hana.jpeg'));
-    // sprite.width = 64;
-    // sprite.height = 96;
-    // sprite.position.set(0, 0);
-    // sprite.zIndex = -1;
-    // this.container.addChild(sprite);
-
-    // 初期表示はキャッシュを残しておく必要がないので、sprite表示後明示的ににクリア
-    utils.clearTextureCache();
-  }
-
-  select(src: string) {
-    const imageList = ['/img/hana.jpeg'];
-    const newImageList = [...imageList, src];
-
-    if (this.sprite) {
-      this.sprite.destroy();
-    }
-
-    this.container.children.forEach((child: any, index) => {
-      const cachId = child.texture?.textureCacheIds[0];
-      if (cachId && newImageList.includes(cachId)) {
-        this.container.children[index].destroy();
-      }
-    });
-
-    newImageList.forEach((imgSrc, index) => {
-      this.sprite = new Sprite(Texture.from(imgSrc));
-      this.sprite.width = 64;
-      this.sprite.height = 96;
-      this.sprite.position.x = (index + 1) * 3 * 30;
-      this.container.addChild(this.sprite);
-    });
   }
 
   changeText(_name: string) {
@@ -125,13 +77,12 @@ class LabelView {
 
     const { fontSize, position } = labelData.items.nickname;
     const textStyle = new TextStyle({
-      fontSize: fontSize * this.xRatio,
+      fontSize: fontSize,
       fontWeight: 'normal',
       fill: _name === '' ? '#a9a49b' : 'black',
     });
     this.nameText = new Text(_name === '' ? 'Your Name' : _name, textStyle);
-    this.nameText.x = position.x * this.xRatio;
-    this.nameText.y = position.y * this.xRatio;
+    this.nameText.position.set(position.x, position.y);
     this.container.addChild(this.nameText);
   }
 
@@ -150,9 +101,9 @@ class LabelView {
     const resizeWidth = Math.round(ratio * this.containerSize.width);
     const resizeHeight = Math.round(ratio * this.containerSize.height);
 
-    if (this.renderer.view) {
-      this.renderer.view.width = resizeWidth;
-      this.renderer.view.height = resizeHeight;
+    if (this.canvas) {
+      this.canvas.style.width = `${resizeWidth}px`;
+      this.canvas.style.height = `${resizeHeight}px`;
     }
   }
 
