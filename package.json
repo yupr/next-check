@@ -4,9 +4,10 @@
   "scripts": {
     "dev": "next",
     "dev:local": "node server/index.js",
-    "build": "next build",
     "start": "next start",
+    "build": "next build",
     "export": "next build && next export",
+    "serve": "yarn export && serve ./out",
     "lint": "eslint '**/*.{ts,tsx}'",
     "fmt": "prettier --write '**/*.{css,scss,js,jsx,ts,tsx}'",
     "prepare": "husky install"
@@ -38,6 +39,7 @@
     "lint-staged": "^12.3.4",
     "prettier": "^2.5.1",
     "sass": "^1.49.0",
+    "serve": "^13.0.2",
     "typescript": "^4.6.3"
   }
 }
