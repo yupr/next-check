@@ -1,6 +1,7 @@
 import { useQuery } from 'react-query';
 import { UserData } from '@/types';
 import axios from 'axios';
+import { useEffect } from 'react';
 
 const fetchUsers = async () => {
   const { data } = await axios('https://jsonplaceholder.typicode.com/users');
@@ -13,12 +14,20 @@ const Connect = () => {
     fetchUsers
   );
 
+  useEffect(() => {
+    const fetch = async () => {
+      const result = await axios('/api/v1/sample');
+      console.log('result', result);
+    };
+
+    fetch();
+  }, []);
+
   // undefined対応: isLoadingがfalseになるまでmap関数を実行しない。(下記tsxがレンダリングされない)
   if (isLoading) {
     return <span>Loading...</span>;
   }
 
-  //エラー対応
   if (error && (isError || !data)) {
     return <span>Error: {error.message}</span>;
   }
