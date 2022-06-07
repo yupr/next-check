@@ -1,7 +1,0 @@
-// format: フォントのリソースがどの形式であるのかのヒントを提供するため
-@mixin font-face($name, $path) {
-  @font-face {
-    font-family: $name;
-    src: url($path) format('truetype');
-  }
-}
