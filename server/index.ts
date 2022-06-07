@@ -1,4 +1,4 @@
-import express, { Request, Response }  from 'express';
+import express, { Request, Response } from 'express';
 import next from 'next';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 
