@@ -17,38 +17,45 @@ const Home: NextPage = () => {
           <h1 className={styles.title}>Link</h1>
 
           <div className={styles.grid}>
-            <Link href="/List">
+            <Link href="/list">
               <a className={styles.card}>
                 <h2>List</h2>
                 <p>For check cjeckBox list</p>
               </a>
             </Link>
 
-            <Link href="/Type">
+            <Link href="/type">
               <a className={styles.card}>
                 <h2>Type</h2>
                 <p>For check typeScript</p>
               </a>
             </Link>
 
-            <Link href="/Connect">
+            <Link href="/connect">
               <a className={styles.card}>
                 <h2>React-Query &rarr;</h2>
                 <p>For check api connect</p>
               </a>
             </Link>
 
-            <Link href="/Validation">
+            <Link href="/validation">
               <a className={styles.card}>
                 <h2>Validation &rarr;</h2>
                 <p>For check react-hook-form</p>
               </a>
             </Link>
 
-            <Link href="/Pixi">
+            <Link href="/pixi">
               <a className={styles.card}>
                 <h2>Pixi</h2>
                 <p>render canvas</p>
+              </a>
+            </Link>
+
+            <Link href="/context">
+              <a className={styles.card}>
+                <h2>Context</h2>
+                <p>Canvas etc</p>
               </a>
             </Link>
           </div>

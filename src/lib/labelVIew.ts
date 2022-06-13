@@ -1,3 +1,4 @@
+import { Dispatch } from 'react';
 import {
   Renderer,
   Text,
@@ -6,6 +7,7 @@ import {
   utils,
   TextStyle,
   Texture,
+  Ticker,
 } from 'pixi.js';
 
 import labelData from '../../label.json';
@@ -13,10 +15,12 @@ import labelData from '../../label.json';
 /**
  * canvasを描画
  */
-class LabelView {
+export class LabelView {
   private renderer: Renderer;
 
   private container: Container;
+
+  private setImageUrl: Dispatch<string>;
 
   private element?: HTMLElement;
 
@@ -24,48 +28,49 @@ class LabelView {
 
   private nameText?: Text;
 
+  private ticker: Ticker;
+
   private containerSize: { width: number; height: number };
 
-  constructor(element: HTMLElement | null) {
+  constructor(element: HTMLElement | null, setImageUrl: Dispatch<string>) {
     this.element = element as HTMLElement;
     utils.skipHello();
-
+    this.setImageUrl = setImageUrl;
     this.containerSize = labelData.container.size;
+
     this.renderer = new Renderer({
       width: this.containerSize.width,
       height: this.containerSize.height,
       backgroundColor: 0x10bb99,
+      backgroundAlpha: 1,
       antialias: true,
       resolution: 1,
     });
+
     this.container = new Container();
     this.container.sortableChildren = true; // zIndexの有効化
 
     this.canvas = this.renderer.view;
     this.element?.appendChild(this.canvas);
 
-    this.keepAspectResize();
+    this.ticker = Ticker.shared;
+    this.render();
 
-    requestAnimationFrame(() => {
-      this.render();
-    });
+    this.keepAspectResize();
     this.setup();
   }
 
   render() {
-    if (this.renderer.view) {
-      requestAnimationFrame(() => {
-        this.render();
-      });
-      this.renderer.render(this.container);
-    }
+    this.ticker.add(() => {
+      if (this.renderer.view) {
+        this.renderer.render(this.container);
+      }
+    });
   }
 
   setup() {
     let sprite = new Sprite();
     sprite = new Sprite(Texture.from('/img/times_square.jpg'));
-    sprite.width = 768;
-    sprite.height = 510;
     sprite.zIndex = 1;
     this.container.addChild(sprite);
   }
@@ -79,11 +84,19 @@ class LabelView {
     const textStyle = new TextStyle({
       fontSize: fontSize,
       fontWeight: 'normal',
-      fill: _name === '' ? '#a9a49b' : 'black',
+      fill: _name === '' ? '#a9a49b' : 'red',
     });
     this.nameText = new Text(_name === '' ? 'Your Name' : _name, textStyle);
+    this.nameText.zIndex = 2;
     this.nameText.position.set(position.x, position.y);
     this.container.addChild(this.nameText);
+  }
+
+  toDataURL() {
+    // 一回噛ませないと生成されない場合がある
+    this.renderer.render(this.container);
+    const dataURL = this.renderer.view.toDataURL('image/jpeg');
+    this.setImageUrl(dataURL);
   }
 
   // 縦横比を保ったまま矩形の大きさに合わせてリサイズ
@@ -115,7 +128,9 @@ class LabelView {
     if (this.renderer) {
       this.renderer.destroy(true);
     }
+
+    if (this.ticker) {
+      this.ticker.destroy();
+    }
   }
 }
-
-export default LabelView;

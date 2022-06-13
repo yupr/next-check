@@ -2,31 +2,18 @@ import 'normalize.css';
 import '../styles/globals.scss';
 import type { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
-import { useState, Dispatch, SetStateAction, createContext } from 'react';
-
-interface ContextInterface {
-  text: string;
-  setText: Dispatch<SetStateAction<string>>;
-}
-
-export const Context = createContext({} as ContextInterface);
+import { CanvasProvider } from '../lib/contexts/CanvasContext';
+// import { ReactQueryDevtools } from 'react-query/devtools';
 
 const queryClient = new QueryClient();
 
 const App = ({ Component, pageProps }: AppProps) => {
-  const [text, setText] = useState('');
-  const value = {
-    text,
-    setText,
-  };
-
   return (
     <QueryClientProvider client={queryClient}>
-      <Context.Provider value={value}>
+      <CanvasProvider>
         <Component {...pageProps} />
-      </Context.Provider>
-      <ReactQueryDevtools initialIsOpen={false} />
+      </CanvasProvider>
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </QueryClientProvider>
   );
 };

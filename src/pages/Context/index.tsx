@@ -1,20 +1,12 @@
-import { useContext, useEffect } from 'react';
-import { Context } from '../_app';
+// import { useEffect } from 'react';
+// import { useCanvasContext } from '../../lib/contexts/CanvasContext';
 
 const ContextCheck = () => {
-  const { text, setText } = useContext(Context);
-
-  useEffect(() => {
-    console.log('text', text);
-  }, [text]);
-
-  const changeText = () => {
-    setText('changed');
-  };
+  // const { imageUrl, setImageUrl } = useCanvasContext();
 
   return (
     <div>
-      <input type="button" onClick={changeText} value="change text" />
+      <p>Context</p>
     </div>
   );
 };

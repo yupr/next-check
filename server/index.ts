@@ -26,7 +26,7 @@ app.prepare().then(() => {
     return handle(req, res);
   });
 
-  server.listen(port, (err?: any) => {
+  server.listen(port, (err?: unknown) => {
     if (err) throw err;
     console.log(`> Ready on http://localhost:${port}`);
   });
