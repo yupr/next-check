@@ -4,8 +4,8 @@
   "scripts": {
     "dev": "next",
     "dev:proxy": "ts-node --project tsconfig.server.json server/index.ts",
-    "start": "next start",
     "build": "next build",
+    "analyze": "ANALYZE=true yarn build",
     "export": "next build && next export",
     "serve": "yarn export && serve ./out",
     "lint": "eslint '**/*.{ts,tsx}'",
@@ -13,6 +13,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^12.1.6",
     "axios": "^0.26.0",
     "classnames": "^2.3.1",
     "express": "^4.17.3",
@@ -20,6 +21,7 @@
     "lodash": "^4.17.21",
     "morgan": "^1.10.0",
     "next": "^12.1.2",
+    "next-compose-plugins": "^2.2.1",
     "normalize.css": "^8.0.1",
     "pixi.js": "^6.3.0",
     "react": "^18.0.0",

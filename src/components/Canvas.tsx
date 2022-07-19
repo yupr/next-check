@@ -1,18 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { LabelView } from '../lib/LabelView';
-import { useRouter } from 'next/router';
-import { useCanvasContext } from '../lib/contexts/CanvasContext';
 
 let labelView: LabelView | null;
 
 const Canvas = () => {
   const ref = useRef(null);
-  const router = useRouter();
   const [name, setName] = useState('');
-  const { setImageUrl } = useCanvasContext();
 
   useEffect(() => {
-    labelView = new LabelView(ref.current, setImageUrl);
+    labelView = new LabelView(ref.current);
 
     return () => {
       if (labelView) {
@@ -32,10 +28,6 @@ const Canvas = () => {
     setName(value);
   };
 
-  const handleNext = () => {
-    router.push('/pixi/confirm');
-  };
-
   return (
     <>
       <div className="canvas" ref={ref} />
@@ -44,10 +36,6 @@ const Canvas = () => {
       <div style={{ marginBottom: 30 }}>
         <p>名前入力</p>
         <input type="text" onChange={(e) => onChangeName(e.target.value)} />
-      </div>
-
-      <div>
-        <input type="button" value="確認画面へ" onClick={handleNext} />
       </div>
     </>
   );

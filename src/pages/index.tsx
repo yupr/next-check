@@ -58,6 +58,13 @@ const Home: NextPage = () => {
                 <p>Canvas etc</p>
               </a>
             </Link>
+
+            <Link href="/componentTest">
+              <a className={styles.card}>
+                <h2>componentTest</h2>
+                <p>Component Inspect</p>
+              </a>
+            </Link>
           </div>
         </main>
 

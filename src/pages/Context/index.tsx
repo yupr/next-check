@@ -1,12 +1,13 @@
-// import { useEffect } from 'react';
-// import { useCanvasContext } from '../../lib/contexts/CanvasContext';
+import { useCanvasContext } from '../../lib/contexts/CountContext';
 
 const ContextCheck = () => {
-  // const { imageUrl, setImageUrl } = useCanvasContext();
+  const { count, setCount, countDown } = useCanvasContext();
 
   return (
     <div>
-      <p>Context</p>
+      <p>Context {count} </p>
+      <input type="button" value="+1" onClick={() => setCount(count + 1)} />
+      <input type="button" value="-1" onClick={countDown} />
     </div>
   );
 };

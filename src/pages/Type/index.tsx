@@ -1,7 +1,7 @@
 const Type = () => {
   return (
     <div>
-      <p>types</p>
+      <p>Typescript Test</p>
     </div>
   );
 };

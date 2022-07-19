@@ -1,4 +1,3 @@
-import { Dispatch } from 'react';
 import {
   Renderer,
   Text,
@@ -20,8 +19,6 @@ export class LabelView {
 
   private container: Container;
 
-  private setImageUrl: Dispatch<string>;
-
   private element?: HTMLElement;
 
   private canvas: HTMLCanvasElement;
@@ -32,10 +29,9 @@ export class LabelView {
 
   private containerSize: { width: number; height: number };
 
-  constructor(element: HTMLElement | null, setImageUrl: Dispatch<string>) {
+  constructor(element: HTMLElement | null) {
     this.element = element as HTMLElement;
     utils.skipHello();
-    this.setImageUrl = setImageUrl;
     this.containerSize = labelData.container.size;
 
     this.renderer = new Renderer({
@@ -94,9 +90,8 @@ export class LabelView {
 
   toDataURL() {
     // 一回噛ませないと生成されない場合がある
-    this.renderer.render(this.container);
-    const dataURL = this.renderer.view.toDataURL('image/jpeg');
-    this.setImageUrl(dataURL);
+    // this.renderer.render(this.container);
+    // const dataURL = this.renderer.view.toDataURL('image/jpeg');
   }
 
   // 縦横比を保ったまま矩形の大きさに合わせてリサイズ

@@ -1,12 +1,17 @@
-/** @type {import('next').NextConfig} */
+const withPlugins = require('next-compose-plugins');
 
-console.log('IS_DEVELOPMENT', process.env.IS_DEVELOPMENT);
-
-module.exports = {
-  productionBrowserSourceMaps: true,
+const nextConfig = {
   reactStrictMode: true,
-  // trailingSlash: true,
+  productionBrowserSourceMaps: true,
   env: {
     customKey: 'my-value',
   },
 };
+
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
+
+const plugins = [withBundleAnalyzer];
+
+module.exports = withPlugins(plugins, nextConfig);
