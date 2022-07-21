@@ -8,7 +8,7 @@ import dynamic from 'next/dynamic';
 // そのため、クライアントのみでしか動作しないPixi.jsでビルド時にエラーが発生してしまったということ。
 
 const Pixi = () => {
-  const Canvas = dynamic(() => import('@/components/Canvas'), {
+  const Canvas = dynamic(() => import('@/components/organisms/Canvas'), {
     ssr: false,
   });
 

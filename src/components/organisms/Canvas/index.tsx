@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { LabelView } from '../lib/LabelView';
+import { LabelView } from '../../../lib/LabelView';
 
 let labelView: LabelView | null;
 

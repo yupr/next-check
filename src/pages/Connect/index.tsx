@@ -1,7 +1,6 @@
 import { useQuery } from 'react-query';
 import { UserData } from '@/types';
 import axios from 'axios';
-// import { useEffect } from 'react';
 
 const fetchUsers = async () => {
   const { data } = await axios('https://jsonplaceholder.typicode.com/users');
@@ -43,4 +42,5 @@ const Connect = () => {
     </div>
   );
 };
+
 export default Connect;
