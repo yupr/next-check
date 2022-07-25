@@ -1,6 +1,6 @@
-import { useQuery } from 'react-query';
 import { UserData } from '@/types';
 import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 
 const fetchUsers = async () => {
   const { data } = await axios('https://jsonplaceholder.typicode.com/users');
@@ -9,26 +9,15 @@ const fetchUsers = async () => {
 
 const Connect = () => {
   const { data, isLoading, isError, error } = useQuery<UserData[], Error>(
-    'users',
+    ['user'],
     fetchUsers
   );
 
-  // connect to express api
-  // useEffect(() => {
-  //   const fetch = async () => {
-  //     const result = await axios('/api/v1/sample');
-  //     console.log('result', result);
-  //   };
-
-  //   fetch();
-  // }, []);
-
-  // undefined対応: isLoadingがfalseになるまでmap関数を実行しない。(下記tsxがレンダリングされない)
   if (isLoading) {
     return <span>Loading...</span>;
   }
 
-  if (error && (isError || !data)) {
+  if (isError) {
     return <span>Error: {error.message}</span>;
   }
 
@@ -36,8 +25,9 @@ const Connect = () => {
     <div>
       <h2>ユーザ一覧</h2>
       <div>
-        {data &&
-          data.map((user: UserData) => <div key={user.id}>{user.name}</div>)}
+        {data.map((user) => (
+          <div key={user.id}>{user.name}</div>
+        ))}
       </div>
     </div>
   );

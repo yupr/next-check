@@ -1,7 +1,16 @@
+import Button from '@/components/atoms/Button';
+
 const Design = () => {
+  const login = () => {
+    console.log('logined');
+  };
+
   return (
     <div>
-      <h1>atomic designをここで試す</h1>
+      <p>component</p>
+      <Button className="button" onClick={login}>
+        Button
+      </Button>
     </div>
   );
 };

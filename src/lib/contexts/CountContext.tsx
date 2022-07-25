@@ -13,7 +13,7 @@ interface Props {
 interface CanvasContextInterface {
   count: number;
   setCount: Dispatch<SetStateAction<number>>;
-  countDown: Dispatch<SetStateAction<number>>;
+  countDown: () => void;
 }
 
 // contextオブジェクトを作成 (初期値なし)

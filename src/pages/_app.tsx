@@ -1,9 +1,9 @@
 import 'normalize.css';
 import '../styles/globals.scss';
 import type { AppProps } from 'next/app';
-import { QueryClient, QueryClientProvider } from 'react-query';
 import { CountProvider } from '../lib/contexts/CountContext';
-// import { ReactQueryDevtools } from 'react-query/devtools';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const queryClient = new QueryClient();
 
@@ -13,7 +13,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       <CountProvider>
         <Component {...pageProps} />
       </CountProvider>
-      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 };

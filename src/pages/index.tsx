@@ -59,9 +59,9 @@ const Home: NextPage = () => {
               </a>
             </Link>
 
-            <Link href="/componentTest">
+            <Link href="/design">
               <a className={styles.card}>
-                <h2>componentTest</h2>
+                <h2>Design</h2>
                 <p>Component Inspect</p>
               </a>
             </Link>
