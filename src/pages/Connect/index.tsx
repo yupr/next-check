@@ -13,6 +13,9 @@ const Connect = () => {
     fetchUsers
   );
 
+  //test
+  useQuery(['users'], () => fetchUsers());
+
   if (isLoading) {
     return <span>Loading...</span>;
   }
