@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import styles from './index.module.scss';
 import { UserData } from '@/types';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
@@ -8,13 +10,11 @@ const fetchUsers = async () => {
 };
 
 const Connect = () => {
-  const { data, isLoading, isError, error } = useQuery<UserData[], Error>(
-    ['user'],
-    fetchUsers
-  );
-
-  //test
-  useQuery(['users'], () => fetchUsers());
+  const [isUser] = useState(true);
+  const { data, isLoading, isError, error, isFetching } = useQuery<
+    UserData[],
+    Error
+  >(['user'], fetchUsers, { enabled: !!isUser });
 
   if (isLoading) {
     return <span>Loading...</span>;
@@ -24,8 +24,12 @@ const Connect = () => {
     return <span>Error: {error.message}</span>;
   }
 
+  if (isFetching) {
+    return <div>Refreshing...</div>;
+  }
+
   return (
-    <div>
+    <div className={styles.connect}>
       <h2>ユーザ一覧</h2>
       <div>
         {data.map((user) => (
