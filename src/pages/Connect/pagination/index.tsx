@@ -1,19 +1,24 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-// import styles from './index.module.scss';
-// import axios from 'axios';
+import styles from './index.module.scss';
+
+type userType = {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+};
 
 const Pagination = () => {
   const [page, setPage] = useState(1);
 
   const fetchProjects = (page = 1) =>
     fetch(
-      'https://api.github.com/search/code?q=addClass+user%3Amozilla&page=' +
-        page
+      `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=10`
     ).then((res) => res.json());
 
   const { isLoading, isError, error, data, isFetching, isPreviousData } =
-    useQuery<any, Error>(['projects', page], () => fetchProjects(page), {
+    useQuery<userType[], Error>(['projects', page], () => fetchProjects(page), {
       keepPreviousData: true,
     });
 
@@ -26,30 +31,35 @@ const Pagination = () => {
   }
 
   return (
-    <div>
-      <div>
-        {data.items.map((project: any, index: number) => (
-          <p key={index}>{project.name}</p>
+    <div className={styles.pagination}>
+      <div className={styles.pagination__content}>
+        {data.map((result: userType, index: number) => (
+          <p key={index}>{result.body}</p>
         ))}
       </div>
-      <span>Current Page: {page}</span>
-      <button
-        onClick={() => setPage((old) => Math.max(old - 1, 1))}
-        disabled={page === 1}
-      >
-        Previous Page
-      </button>{' '}
-      <button
-        onClick={() => {
-          if (!isPreviousData && data.items) {
-            setPage((old) => old + 1);
-          }
-        }}
-        disabled={isPreviousData || !data?.items}
-      >
-        Next Page
-      </button>
-      {isFetching ? <span> Loading...</span> : null}{' '}
+      <div className={styles.pagination__page}>
+        <div className={styles.pagination__page__current}>
+          Current Page: {page}
+        </div>
+        <button
+          className={styles.pagination__page__buttonDisable}
+          onClick={() => setPage((old) => Math.max(old - 1, 0))}
+          disabled={page === 1}
+        >
+          Previous Page
+        </button>{' '}
+        <button
+          onClick={() => {
+            if (!isPreviousData && data) {
+              setPage((old) => old + 1);
+            }
+          }}
+          disabled={isPreviousData || !data}
+        >
+          Next Page
+        </button>
+        {isFetching ? <div> Loading...</div> : null}{' '}
+      </div>
     </div>
   );
 };
