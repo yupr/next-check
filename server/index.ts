@@ -8,6 +8,9 @@ const API_URL = 'http://localhost:8000';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
+// connect to express api
+// 例: const result = await axios('/api/v1/sample')
+
 app.prepare().then(() => {
   const server = express();
   server.use(
