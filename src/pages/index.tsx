@@ -24,13 +24,6 @@ const Home: NextPage = () => {
               </a>
             </Link>
 
-            <Link href="/type">
-              <a className={styles.card}>
-                <h2>Type</h2>
-                <p>For check typeScript</p>
-              </a>
-            </Link>
-
             <Link href="/connect">
               <a className={styles.card}>
                 <h2>React-Query &rarr;</h2>
