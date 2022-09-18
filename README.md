@@ -5,6 +5,7 @@
 
 ## 使用している主な技術
   - Next.js
-  - React Hooks
+  - React
   - TypeScript
+  - React Hooks
   - Scss
