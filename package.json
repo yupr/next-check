@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "next",
+    "dev:debug": "NODE_OPTIONS='--inspect' next dev",
     "dev:local": "ts-node --project tsconfig.server.json server/index.ts",
     "build": "next build",
     "analyze": "ANALYZE=true yarn build",
