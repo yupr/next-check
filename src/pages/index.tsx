@@ -58,6 +58,13 @@ const Home: NextPage = () => {
                 <p>Component Inspect</p>
               </a>
             </Link>
+
+            <Link href="/design/mui">
+              <a className={styles.card}>
+                <h2>Design MUI</h2>
+                <p>MUI Component Inspect</p>
+              </a>
+            </Link>
           </div>
         </main>
 

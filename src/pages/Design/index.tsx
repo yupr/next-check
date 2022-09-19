@@ -8,7 +8,7 @@ const Design = () => {
 
   setTimeout(() => {
     setIsLoad(false);
-  }, 3000);
+  }, 1000);
 
   const login = () => {
     console.log('logined');
@@ -21,7 +21,7 @@ const Design = () => {
   return (
     <>
       <div className={styles.design}>
-        <p>component</p>
+        <p>自作componentを試す</p>
         <Button className="button" onClick={login}>
           Button
         </Button>
