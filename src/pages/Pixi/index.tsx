@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic';
-// import './index.scss';
 
 // ここでいうssrとは、getServerSidePropsを使っているわけではなく、
 // 文字通りサーバーサイド側であらかじめレンダリングされたことを意味する。
@@ -14,9 +13,7 @@ const Pixi = () => {
 
   return (
     <>
-      <>
-        <Canvas />
-      </>
+      <Canvas />
     </>
   );
 };

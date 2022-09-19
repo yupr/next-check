@@ -1,7 +1,7 @@
 import 'normalize.css';
-import '../styles/globals.scss';
+import 'src/styles/globals.scss';
 import type { AppProps } from 'next/app';
-import { CountProvider } from '../lib/contexts/CountContext';
+import { CountProvider } from 'src/lib/contexts/CountContext';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 

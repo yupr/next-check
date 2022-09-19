@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { LabelView } from '../../../lib/LabelView';
+import { LabelView } from 'src/lib/LabelView';
 
 let labelView: LabelView | null;
 
@@ -31,11 +31,12 @@ const Canvas = () => {
   return (
     <>
       <div className="canvas" ref={ref} />
-      <img src="img/header-logo.png" alt="logo" />
-
       <div style={{ marginBottom: 30 }}>
-        <p>名前入力</p>
-        <input type="text" onChange={(e) => onChangeName(e.target.value)} />
+        <input
+          type="text"
+          placeholder="名前を入力"
+          onChange={(e) => onChangeName(e.target.value)}
+        />
       </div>
     </>
   );

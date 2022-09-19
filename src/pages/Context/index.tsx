@@ -1,4 +1,4 @@
-import { useCanvasContext } from '../../lib/contexts/CountContext';
+import { useCanvasContext } from 'src/lib/contexts/CountContext';
 
 const ContextCheck = () => {
   const { count, setCount, countDown } = useCanvasContext();
