@@ -20,7 +20,7 @@ interface CanvasContextInterface {
 const CountContext = createContext({} as CanvasContextInterface);
 
 // contextを返す custom hook
-export const useCanvasContext = () => {
+export const useCountContext = () => {
   return useContext(CountContext);
 };
 

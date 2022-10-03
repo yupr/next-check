@@ -44,13 +44,6 @@ const Home: NextPage = () => {
               </a>
             </Link>
 
-            <Link href="/context">
-              <a className={styles.card}>
-                <h2>Context</h2>
-                <p>Canvas etc</p>
-              </a>
-            </Link>
-
             <Link href="/design">
               <a className={styles.card}>
                 <h2>Design</h2>
@@ -58,10 +51,10 @@ const Home: NextPage = () => {
               </a>
             </Link>
 
-            <Link href="/design/mui">
+            <Link href="/inspect">
               <a className={styles.card}>
-                <h2>Design MUI</h2>
-                <p>MUI Component Inspect</p>
+                <h2>Inspect</h2>
+                <p>develop inspect</p>
               </a>
             </Link>
           </div>
