@@ -16,6 +16,14 @@ const Connect = () => {
     Error
   >(['user'], fetchUsers, { enabled: !!isUser });
 
+  // useEffect(() => {
+  //   const fetch = async () => {
+  //     const result = await axios('/api/v1/sample');
+  //     console.log('Result', result.data);
+  //   };
+  //   fetch();
+  // }, []);
+
   if (isLoading) {
     return <span>Loading...</span>;
   }
