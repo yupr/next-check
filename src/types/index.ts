@@ -1,4 +1,4 @@
-export type UserData = {
+export interface UserData {
   id: number;
   name: string;
   username: string;
@@ -20,4 +20,4 @@ export type UserData = {
     catchPhrase: string;
     bs: string;
   };
-};
+}
