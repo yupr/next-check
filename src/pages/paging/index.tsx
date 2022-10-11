@@ -3,13 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import styles from './index.module.scss';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-
-interface userType {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-}
+import { Post } from '@/types/index';
 
 const Paging = () => {
   const [page, setPage] = useState(1);
@@ -20,7 +14,7 @@ const Paging = () => {
     ).then((res) => res.json());
 
   const { isLoading, isError, error, data, isPreviousData } = useQuery<
-    userType[],
+    Post[],
     Error
   >(['projects', page], () => fetchProjects(page), {
     keepPreviousData: true,
@@ -41,7 +35,7 @@ const Paging = () => {
   return (
     <div className={styles.paging}>
       <div className={styles.paging__content}>
-        {data.map((result: userType, index: number) => (
+        {data.map((result: Post, index: number) => (
           <p key={index}>{result.body}</p>
         ))}
       </div>

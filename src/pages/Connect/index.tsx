@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from './index.module.scss';
-import { UserData } from '@/types';
+import { User } from '@/types';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 
@@ -12,17 +12,9 @@ const fetchUsers = async () => {
 const Connect = () => {
   const [isUser] = useState(true);
   const { data, isLoading, isError, error, isFetching } = useQuery<
-    UserData[],
+    User[],
     Error
   >(['user'], fetchUsers, { enabled: !!isUser });
-
-  // useEffect(() => {
-  //   const fetch = async () => {
-  //     const result = await axios('/api/v1/sample');
-  //     console.log('Result', result.data);
-  //   };
-  //   fetch();
-  // }, []);
 
   if (isLoading) {
     return <span>Loading...</span>;

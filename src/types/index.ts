@@ -1,4 +1,4 @@
-export interface UserData {
+export interface User {
   id: number;
   name: string;
   username: string;
@@ -20,4 +20,11 @@ export interface UserData {
     catchPhrase: string;
     bs: string;
   };
+}
+
+export interface Post {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
 }
