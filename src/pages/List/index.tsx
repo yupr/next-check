@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import styles from './index.module.scss';
 
-type ItemType = {
+interface Item {
   id: number;
   name: string;
-}[];
+}
 
 const List = () => {
-  const [checkedList, setCheckedList] = useState<ItemType>([]);
+  const [checkedList, setCheckedList] = useState<Item[]>([]);
 
   const Items = [
     { id: 1, name: 'item1' },

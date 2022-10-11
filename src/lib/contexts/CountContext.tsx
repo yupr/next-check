@@ -42,3 +42,7 @@ export const CountProvider = ({ children }: Props): JSX.Element => {
     <CountContext.Provider value={value}>{children}</CountContext.Provider>
   );
 };
+
+// use case: with components
+// import { useCountContext } from '@/lib/contexts/CountContext';
+// const { count, setCount, countDown } = useCountContext();

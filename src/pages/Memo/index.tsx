@@ -3,15 +3,15 @@ import { useState, useCallback, memo } from 'react';
 // memo, useCallback によるチューニング
 
 // type
-type ButtonProps = {
+interface ButtonProps {
   handleClick: () => void;
   value: string;
-};
+}
 
-type CountProps = {
+interface CountProps {
   text: string;
   countState: number;
-};
+}
 
 // Title
 // propsを渡していないので、再レンダリングされない

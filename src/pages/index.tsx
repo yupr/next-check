@@ -44,17 +44,10 @@ const Home: NextPage = () => {
               </a>
             </Link>
 
-            <Link href="/design">
+            <Link href="/mui">
               <a className={styles.card}>
-                <h2>Design</h2>
-                <p>Component Inspect</p>
-              </a>
-            </Link>
-
-            <Link href="/inspect">
-              <a className={styles.card}>
-                <h2>Inspect</h2>
-                <p>develop inspect</p>
+                <h2>MUI</h2>
+                <p>check material ui</p>
               </a>
             </Link>
           </div>
