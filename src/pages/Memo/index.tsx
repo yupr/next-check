@@ -1,8 +1,7 @@
 import { useState, useCallback, memo } from 'react';
 
-// memo, useCallback によるチューニング
+// memo, useCallback による 再レンダリングの確認
 
-// type
 interface ButtonProps {
   handleClick: () => void;
   value: string;
@@ -31,7 +30,7 @@ const Title = memo(() => {
 });
 Title.displayName = 'Title';
 
-const Count: React.FC<CountProps> = memo(({ text, countState }: CountProps) => {
+const Count = memo(({ text, countState }: CountProps) => {
   console.log('Count child component', text, countState);
   return (
     <p>
@@ -39,18 +38,18 @@ const Count: React.FC<CountProps> = memo(({ text, countState }: CountProps) => {
     </p>
   );
 });
+
 Count.displayName = 'Count';
 
-const Button: React.FC<ButtonProps> = memo(
-  ({ handleClick, value }: ButtonProps) => {
-    console.log('Button child component', value);
-    return (
-      <button type="button" onClick={handleClick}>
-        {value}
-      </button>
-    );
-  }
-);
+const Button = memo(({ handleClick, value }: ButtonProps) => {
+  console.log('Button child component', value);
+  return (
+    <button type="button" onClick={handleClick}>
+      {value}
+    </button>
+  );
+});
+
 Button.displayName = 'Button';
 
 const Memo = () => {

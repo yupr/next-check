@@ -2,34 +2,56 @@
   form {
     max-width: 500px;
     margin: 0 auto;
-    height: auto;
+  }
+
+  span {
+    line-height: 2;
+    text-align: left;
+    display: block;
+    margin-bottom: 13px;
+    margin-top: 20px;
+    color: black;
+    font-size: 14px;
+    font-weight: 400;
   }
 
   input {
     width: 100%;
     display: flex;
     border-radius: 4px;
-  }
-
-  &__input {
     border: 1px solid black;
     padding: 15px 15px;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
   }
 
-  &__errors {
-    display: flex;
-    flex-direction: column;
+  p {
+    color: red;
+    &::before {
+      display: inline;
+      content: '⚠ ';
+    }
   }
 
   &__submit {
-    margin-top: 100px;
-    padding: 20px;
     background: #ec5990;
     color: white;
+    text-transform: uppercase;
+    border: none;
+    margin-top: 30px;
+    padding: 20px;
+    font-size: 16px;
+    font-weight: 100;
+    letter-spacing: 10px;
 
     &:hover {
       background: #bf1650;
+    }
+
+    &:active {
+      transition: 0.3s all;
+      transform: translateY(3px);
+      border: 1px solid transparent;
+      opacity: 0.8;
     }
   }
 }
