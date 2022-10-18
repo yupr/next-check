@@ -9,7 +9,7 @@ import {
   Ticker,
 } from 'pixi.js';
 
-import labelData from '../../label.json';
+import labelData from '@/label.json';
 
 /**
  * canvasを描画
