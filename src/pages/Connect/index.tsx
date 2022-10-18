@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 
 const fetchUsers = async () => {
-  const { data } = await axios('https://jsonplaceholder.typicode.com/users');
+  const { data } = await axios('/users');
   return data;
 };
 
