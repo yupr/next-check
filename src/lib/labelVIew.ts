@@ -66,7 +66,7 @@ export class LabelView {
 
   setup() {
     let sprite = new Sprite();
-    sprite = new Sprite(Texture.from('/img/times_square.jpg'));
+    sprite = new Sprite(Texture.from('/img/bg_particles.png'));
     sprite.zIndex = 1;
     this.container.addChild(sprite);
   }
@@ -82,7 +82,11 @@ export class LabelView {
       fontWeight: 'normal',
       fill: _name === '' ? '#a9a49b' : 'red',
     });
-    this.nameText = new Text(_name === '' ? 'Your Name' : _name, textStyle);
+
+    this.nameText = new Text(
+      _name === '' ? 'Type Something' : _name,
+      textStyle
+    );
     this.nameText.zIndex = 2;
     this.nameText.position.set(position.x, position.y);
     this.container.addChild(this.nameText);

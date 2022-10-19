@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { LabelView } from 'src/lib/LabelView';
+import styles from './index.module.scss';
 
 let labelView: LabelView | null;
 
@@ -30,13 +31,15 @@ const Canvas = () => {
 
   return (
     <>
-      <div className="canvas" ref={ref} />
-      <div style={{ marginBottom: 30 }}>
-        <input
-          type="text"
-          placeholder="名前を入力"
-          onChange={(e) => onChangeName(e.target.value)}
-        />
+      <div className={styles.pixi}>
+        <div ref={ref} />
+        <div className={styles.pixi__input}>
+          <input
+            type="text"
+            placeholder="何か入力する"
+            onChange={(e) => onChangeName(e.target.value)}
+          />
+        </div>
       </div>
     </>
   );
