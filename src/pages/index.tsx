@@ -19,7 +19,7 @@ const Home: NextPage = () => {
             <Link href="/list">
               <a className={styles.card}>
                 <h2>List</h2>
-                <p>For check cjeckBox list</p>
+                <p>For check checkBox list</p>
               </a>
             </Link>
 
