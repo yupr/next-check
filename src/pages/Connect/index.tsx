@@ -1,31 +1,17 @@
 import { useState } from 'react';
 import styles from './index.module.scss';
-import { User } from '@/types';
-import axios from 'axios';
-import { useQuery } from '@tanstack/react-query';
-
-const fetchUsers = async () => {
-  const { data } = await axios('/users');
-  return data;
-};
+import { useUser } from '@/hooks/useUser';
 
 const Connect = () => {
   const [isUser] = useState(true);
-  const { data, isLoading, isError, error, isFetching } = useQuery<
-    User[],
-    Error
-  >(['user'], fetchUsers, { enabled: !!isUser });
+  const { data, isLoading, isError } = useUser(!!isUser);
 
   if (isLoading) {
     return <span>Loading...</span>;
   }
 
   if (isError) {
-    return <span>Error: {error.message}</span>;
-  }
-
-  if (isFetching) {
-    return <div>Refreshing...</div>;
+    return <span>Error</span>;
   }
 
   return (
