@@ -1,8 +1,13 @@
 import axios from '@/lib/axios';
 import { useApi } from '@/hooks/useApi';
 
+interface User {
+  id: number;
+  name: string;
+}
+
 // api connnect
-const fetchUsers = async () => {
+const fetchUsers = async (): Promise<User[]> => {
   const res = await axios('/users');
   return res?.data;
 };
