@@ -1,10 +1,20 @@
 import { rest } from 'msw';
 
 export const handlers = [
-  rest.post('/login', (req, res, ctx) => {
-    sessionStorage.setItem('is-authenticated', 'true');
+  rest.post('/login', async (req, res, ctx) => {
+    // sessionStorage.setItem('is-authenticated', 'true');
+    const reqBody = await req.json();
+    const { userName, pass } = reqBody;
 
-    return res(ctx.status(200));
+    if (userName && pass) {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          message: 'login successed!',
+          token: 'testToken',
+        })
+      );
+    }
   }),
 
   rest.get('/user', (req, res, ctx) => {
@@ -29,6 +39,8 @@ export const handlers = [
   rest.get('/users', (req, res, ctx) => {
     return res(
       ctx.status(200),
+      // ctx.status(500),
+
       ctx.json([
         {
           id: 1,

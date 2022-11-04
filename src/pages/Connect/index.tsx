@@ -1,41 +1,50 @@
 import { useState } from 'react';
 import styles from './index.module.scss';
-import { User } from '@/types';
-import axios from 'axios';
-import { useQuery } from '@tanstack/react-query';
-
-const fetchUsers = async () => {
-  const { data } = await axios('/users');
-  return data;
-};
+import { useUsers, useLogin } from '@/hooks/useUser';
 
 const Connect = () => {
   const [isUser] = useState(true);
-  const { data, isLoading, isError, error, isFetching } = useQuery<
-    User[],
-    Error
-  >(['user'], fetchUsers, { enabled: !!isUser });
+  const [loginMsg, setLoginMsg] = useState<string>('');
+
+  const { data: users, isLoading, isError } = useUsers(!!isUser);
+  const fetchLogin = useLogin();
+
+  const login = async () => {
+    fetchLogin.mutate(
+      { userName: 'carl', pass: 'password' },
+      {
+        onSuccess: (res) => {
+          console.log('success', res);
+
+          if (res?.message) {
+            setLoginMsg(res.message);
+          }
+        },
+      }
+    );
+  };
 
   if (isLoading) {
     return <span>Loading...</span>;
   }
 
   if (isError) {
-    return <span>Error: {error.message}</span>;
-  }
-
-  if (isFetching) {
-    return <div>Refreshing...</div>;
+    return <span>Error</span>;
   }
 
   return (
     <div className={styles.connect}>
       <h2>ユーザ一覧</h2>
       <div>
-        {data.map((user) => (
+        {users.map((user) => (
           <div key={user.id}>{user.name}</div>
         ))}
       </div>
+
+      <button className={styles.connect__login} onClick={() => login()}>
+        ログイン
+      </button>
+      <div> {loginMsg}</div>
     </div>
   );
 };
