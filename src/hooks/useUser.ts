@@ -1,21 +1,44 @@
 import axios from '@/lib/axios';
-import { useApi } from '@/hooks/useApi';
+import { useApi, useGenericMutation } from '@/hooks/useApi';
 
 interface User {
   id: number;
   name: string;
 }
 
-// api connnect
-const fetchUsers = async (): Promise<User[]> => {
-  const res = await axios('/users');
+interface Login {
+  userName: string;
+  pass: string | number;
+}
+
+interface LoginMessage {
+  message?: string;
+}
+
+// ------------------------------------------------
+
+const fetchLogin = async (params: Login): Promise<LoginMessage> => {
+  const res = await axios.post('/login', params);
   return res?.data;
 };
 
-const useUser = (isUser: boolean) => {
+const useLogin = () => {
+  return useGenericMutation(async (params: Login) => fetchLogin(params));
+};
+
+// ------------------------------------------------
+
+const fetchUsers = async (): Promise<User[]> => {
+  const res = await axios.get('/users');
+  return res?.data;
+};
+
+const useUsers = (isUser: boolean) => {
   return useApi(['users'], async () => fetchUsers(), {
     enabled: !!isUser,
   });
 };
 
-export { useUser };
+// ------------------------------------------------
+
+export { useLogin, useUsers };

@@ -24,7 +24,7 @@ instance.interceptors.request.use(
   },
   (err) => {
     if (axios.isAxiosError(err)) {
-      console.log('error', err);
+      console.log('req_error', err);
     }
     return Promise.reject(err);
   }
@@ -36,7 +36,7 @@ instance.interceptors.response.use(
   },
   (err) => {
     if (axios.isAxiosError(err)) {
-      console.log('error', err);
+      console.log('res_error', err);
 
       // if (err.response?.status) {
       //   console.log('status_code', err.response.status);
