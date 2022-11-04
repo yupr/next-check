@@ -1,31 +1,24 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
-const instance = axios.create();
+const BaseUrl = 'http://localhost:3000';
 
-// 例: login(post) の resからtokenを取得して、リクエストヘッダーにセットする場合
-// const login = async () => {
-//   try {
-//     const res = await axios.post('/login');
-//     if (res.data?.token) {
-//       instance.defaults.headers.common['auth-token'] = res.data.token;
-//     }
-//   } catch (err) {
-//     console.log('err', err);
-//   }
-// };
+const instance = axios.create({
+  baseURL: BaseUrl,
+});
 
 instance.interceptors.request.use(
   (config) => {
+    const headers = config.headers;
+
     config.headers = {
+      ...headers,
       'X-Custom-Type': 'custom_value',
     };
 
     return config;
   },
-  (err) => {
-    if (axios.isAxiosError(err)) {
-      console.log('req_error', err);
-    }
+  (err: AxiosError<{ error: string }>) => {
+    console.log('req_error', err);
     return Promise.reject(err);
   }
 );
@@ -34,14 +27,12 @@ instance.interceptors.response.use(
   (res) => {
     return res;
   },
-  (err) => {
-    if (axios.isAxiosError(err)) {
-      console.log('res_error', err);
-
-      // if (err.response?.status) {
-      //   console.log('status_code', err.response.status);
-      // }
+  (err: AxiosError<{ error: string }>) => {
+    const statusCode = err.response?.status;
+    if (statusCode === 400) {
+      console.log('status_code', statusCode);
     }
+
     return Promise.reject(err);
   }
 );

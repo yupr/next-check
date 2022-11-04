@@ -11,6 +11,7 @@ export const handlers = [
         ctx.status(200),
         ctx.json({
           message: 'login successed!',
+          token: 'testToken',
         })
       );
     }

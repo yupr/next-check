@@ -4,6 +4,8 @@ import { useUsers, useLogin } from '@/hooks/useUser';
 
 const Connect = () => {
   const [isUser] = useState(true);
+  const [loginMsg, setLoginMsg] = useState<string>('');
+
   const { data: users, isLoading, isError } = useUsers(!!isUser);
   const fetchLogin = useLogin();
 
@@ -13,6 +15,10 @@ const Connect = () => {
       {
         onSuccess: (res) => {
           console.log('success', res);
+
+          if (res?.message) {
+            setLoginMsg(res.message);
+          }
         },
       }
     );
@@ -38,6 +44,7 @@ const Connect = () => {
       <button className={styles.connect__login} onClick={() => login()}>
         ログイン
       </button>
+      <div> {loginMsg}</div>
     </div>
   );
 };

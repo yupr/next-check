@@ -1,5 +1,6 @@
 import axios from '@/lib/axios';
-import { useApi, useGenericMutation } from '@/hooks/useApi';
+import { AxiosResponse } from 'axios';
+import { useApi, useOptimisticMutation } from '@/hooks/useApi';
 
 interface User {
   id: number;
@@ -11,19 +12,28 @@ interface Login {
   pass: string | number;
 }
 
-interface LoginMessage {
+interface LoginRes {
   message?: string;
+  token?: string;
 }
 
 // ------------------------------------------------
 
-const fetchLogin = async (params: Login): Promise<LoginMessage> => {
-  const res = await axios.post('/login', params);
+const fetchLogin = async (params: Login): Promise<LoginRes> => {
+  const res: AxiosResponse<LoginRes> = await axios.post('/login', params);
+
+  // レスポンスの値をヘッダーにセットできるかテスト
+  // const token = res.data.token;
+  // if (token) {
+  //   axios.defaults.headers.common['Authorization'] = token;
+  // }
   return res?.data;
 };
 
 const useLogin = () => {
-  return useGenericMutation(async (params: Login) => fetchLogin(params));
+  return useOptimisticMutation(['login'], async (params: Login) =>
+    fetchLogin(params)
+  );
 };
 
 // ------------------------------------------------
