@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from './index.module.scss';
 import { useUsers, useLogin } from '@/hooks/useUser';
 import Error from '@/pages/_error';
+import { AxiosError } from 'axios';
 
 const Connect = () => {
   const [isUser] = useState(true);
@@ -10,18 +11,24 @@ const Connect = () => {
   const fetchLogin = useLogin();
 
   const login = async () => {
-    fetchLogin.mutate(
-      { userName: 'carl', pass: 'password' },
-      {
-        onSuccess: (res) => {
-          console.log('success', res);
-
-          if (res?.message) {
-            setLoginMsg(res.message);
-          }
-        },
+    try {
+      await fetchLogin.mutateAsync(
+        { userName: 'carl', pass: 'password' },
+        {
+          onSuccess: (res) => {
+            if (res?.message) {
+              setLoginMsg(res.message);
+            }
+          },
+        }
+      );
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        // エラーメッセージをトーストなどに表示
+        const message = err ? err?.message : 'server error';
+        console.log('message', message);
       }
-    );
+    }
   };
 
   if (isLoading) {

@@ -8,6 +8,7 @@ export const handlers = [
 
     if (userName && pass) {
       return res(
+        // ctx.status(500)
         ctx.status(200),
         ctx.json({
           message: 'login successed!',

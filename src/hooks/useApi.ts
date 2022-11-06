@@ -27,12 +27,12 @@ export const useApi = <
   });
 };
 
-export const useOptimisticMutation = <TVariables, TData, TContext>(
+export const useOptimisticMutation = <TVariables, TError, TData, TContext>(
   queryKey: [string, Record<string, unknown>?],
   fetcher: (params: TVariables) => Promise<TData | void>,
   updater?: ((oldData: TContext, newData: TVariables) => TContext) | undefined,
   options?: Omit<
-    UseMutationOptions<TData | void, unknown, TVariables, TContext>,
+    UseMutationOptions<TData | void, TError, TVariables, TContext>,
     'onMutate' | 'onError' | 'onSettled'
   >
 ) => {
