@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import styles from './index.module.scss';
 import { useUsers, useLogin } from '@/hooks/useUser';
+import Error from '@/pages/_error';
 
 const Connect = () => {
   const [isUser] = useState(true);
   const [loginMsg, setLoginMsg] = useState<string>('');
-
-  const { data: users, isLoading, isError } = useUsers(!!isUser);
+  const { data: users, isLoading, isError, error } = useUsers(!!isUser);
   const fetchLogin = useLogin();
 
   const login = async () => {
@@ -28,8 +28,9 @@ const Connect = () => {
     return <span>Loading...</span>;
   }
 
-  if (isError) {
-    return <span>Error</span>;
+  if (isError && error) {
+    const statusCode = error.response?.status;
+    return <Error statusCode={statusCode}></Error>;
   }
 
   return (

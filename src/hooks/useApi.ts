@@ -5,11 +5,12 @@ import {
   UseMutationOptions,
   useQueryClient,
 } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 
 export const useApi = <
   TQueryKey extends [string, (Record<string, unknown> | string)?],
   TQueryFnData,
-  TError,
+  TError = AxiosError,
   TData = TQueryFnData
 >(
   queryKey: TQueryKey,

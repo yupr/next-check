@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "next",
+    "prd:start": "next start",
     "dev:debug": "NODE_OPTIONS='--inspect' next dev",
     "dev:local": "ts-node --project server/tsconfig.json server/index.ts",
     "build": "next build",

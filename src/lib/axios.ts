@@ -28,11 +28,6 @@ instance.interceptors.response.use(
     return res;
   },
   (err: AxiosError<{ error: string }>) => {
-    const statusCode = err.response?.status;
-    if (statusCode === 400) {
-      console.log('status_code', statusCode);
-    }
-
     return Promise.reject(err);
   }
 );
