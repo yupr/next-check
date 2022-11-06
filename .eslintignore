@@ -1,6 +1,4 @@
 **/.next/**
 **/out/**
-
 server/index.js
-
-prototype/**
+.eslintrc.js

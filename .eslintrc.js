@@ -1,11 +1,13 @@
 module.exports = {
   root: true,
 
-  // globalオブジェクトを宣言なしで参照可能にするのか知らせるための設定
+  // globalオブジェクトを変数の宣言なしでもエラーを吐かずに参照可能
   env: {
     browser: true, // window, alertなどbrowserで動くグローバル変数をglobals設定に登録
     es2021: true,
   },
+
+  parser: '@typescript-eslint/parser',
 
   // 構文解析: サポートしたいJSのオプションを指定(デフォルトではES5を使用)
   parserOptions: {
