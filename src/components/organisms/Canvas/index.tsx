@@ -5,7 +5,7 @@ import styles from './index.module.scss';
 let labelView: LabelView | null;
 
 const Canvas = () => {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement | null>(null);
   const [name, setName] = useState('');
 
   useEffect(() => {

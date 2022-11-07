@@ -3,7 +3,6 @@ import {
   Text,
   Container,
   Sprite,
-  utils,
   TextStyle,
   Texture,
   Ticker,
@@ -19,7 +18,7 @@ export class LabelView {
 
   private container: Container;
 
-  private element?: HTMLElement;
+  private element: HTMLDivElement | null;
 
   private canvas: HTMLCanvasElement;
 
@@ -29,9 +28,8 @@ export class LabelView {
 
   private containerSize: { width: number; height: number };
 
-  constructor(element: HTMLElement | null) {
-    this.element = element as HTMLElement;
-    utils.skipHello();
+  constructor(element: HTMLDivElement | null) {
+    this.element = element;
     this.containerSize = labelData.container.size;
 
     this.renderer = new Renderer({
@@ -46,7 +44,7 @@ export class LabelView {
     this.container = new Container();
     this.container.sortableChildren = true; // zIndexの有効化
 
-    this.canvas = this.renderer.view;
+    this.canvas = this.renderer.view as HTMLCanvasElement;
     this.element?.appendChild(this.canvas);
 
     this.ticker = Ticker.shared;
