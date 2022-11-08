@@ -15,10 +15,8 @@ const Canvas = () => {
       if (labelView) {
         labelView.toDataURL();
         labelView.destroy();
-        labelView = null;
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

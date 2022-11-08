@@ -7,7 +7,6 @@ import {
   Texture,
   Ticker,
 } from 'pixi.js';
-
 import labelData from '@/label.json';
 
 /**
@@ -47,7 +46,9 @@ export class LabelView {
     this.canvas = this.renderer.view as HTMLCanvasElement;
     this.element?.appendChild(this.canvas);
 
-    this.ticker = Ticker.shared;
+    this.ticker = new Ticker();
+    this.ticker.start();
+
     this.render();
 
     this.keepAspectResize();
@@ -56,9 +57,7 @@ export class LabelView {
 
   render() {
     this.ticker.add(() => {
-      if (this.renderer.view) {
-        this.renderer.render(this.container);
-      }
+      this.renderer.render(this.container);
     });
   }
 
