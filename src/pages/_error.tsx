@@ -8,15 +8,9 @@ interface Props {
 const Error: NextPage<Props> = ({ statusCode }) => {
   return (
     <div className="error-container">
-      <img
-        src="https://rickandmortyapi.com/api/character/avatar/234.jpeg"
-        alt="a dead morty..."
-      />
       {statusCode && <h1>Error: {statusCode}</h1>}
       <p>We are sorry! There was an error</p>
-      <Link href="/">
-        <a>Go back home</a>
-      </Link>
+      <Link href="/">Go back home</Link>
     </div>
   );
 };

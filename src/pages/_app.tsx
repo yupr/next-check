@@ -5,10 +5,10 @@ import { CountProvider } from 'src/lib/contexts/CountContext';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Head from 'next/head';
+import initMocks from '@/mocks';
 
 if (process.env.NEXT_PUBLIC_API_MOCKING === 'true') {
-  const MockServer = () => import('@/mocks/worker');
-  MockServer();
+  initMocks();
 }
 
 const queryClient = new QueryClient({

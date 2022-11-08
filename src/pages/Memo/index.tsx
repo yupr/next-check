@@ -25,13 +25,13 @@ interface CountProps {
 // 再生成された関数を react.memo が別の関数と認識したため、useCallBackを用いて関数のキャッシュを行う必要がある。
 
 const Title = memo(() => {
-  console.log('Title component');
+  // console.log('Title component');
   return <h2>useCallBackTest vol.1</h2>;
 });
 Title.displayName = 'Title';
 
 const Count = memo(({ text, countState }: CountProps) => {
-  console.log('Count child component', text, countState);
+  // console.log('Count child component', text, countState);
   return (
     <p>
       {text}:{countState}
@@ -42,7 +42,7 @@ const Count = memo(({ text, countState }: CountProps) => {
 Count.displayName = 'Count';
 
 const Button = memo(({ handleClick, value }: ButtonProps) => {
-  console.log('Button child component', value);
+  // console.log('Button child component', value);
   return (
     <button type="button" onClick={handleClick}>
       {value}

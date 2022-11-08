@@ -13,12 +13,7 @@ const nextConfig = {
 
 const plugins = [withBundleAnalyzer];
 
-const defaultConfig = {
-  // msw unhandledRejection Error 一時的に回避
-  experimental: {
-    esmExternals: false,
-  },
-};
+const defaultConfig = {};
 
 module.exports = async (phase) =>
   withPlugins(plugins, nextConfig)(phase, { defaultConfig });
