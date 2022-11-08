@@ -1,12 +1,5 @@
-import {
-  Renderer,
-  Text,
-  Container,
-  Sprite,
-  TextStyle,
-  Texture,
-  Ticker,
-} from 'pixi.js';
+import { Renderer, Text, Container, Sprite, TextStyle, Texture } from 'pixi.js';
+import { Ticker } from '@pixi/core';
 import labelData from '@/label.json';
 
 /**
@@ -50,7 +43,6 @@ export class LabelView {
     this.ticker.start();
 
     this.render();
-
     this.keepAspectResize();
     this.setup();
   }
@@ -126,6 +118,7 @@ export class LabelView {
     }
 
     if (this.ticker) {
+      this.ticker.stop();
       this.ticker.destroy();
     }
   }
