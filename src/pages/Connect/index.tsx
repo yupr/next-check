@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import styles from './index.module.scss';
 import { useUsers, useLogin } from '@/hooks/useUser';
 import Error from '@/pages/_error';
 import { AxiosError } from 'axios';
+import { css } from '@emotion/react';
 
 const Connect = () => {
   const [isUser] = useState(true);
@@ -41,7 +41,7 @@ const Connect = () => {
   }
 
   return (
-    <div className={styles.connect}>
+    <div css={css({ margin: '15px' })}>
       <h2>ユーザ一覧</h2>
       <div>
         {users.map((user) => (
@@ -49,7 +49,7 @@ const Connect = () => {
         ))}
       </div>
 
-      <button className={styles.connect__login} onClick={() => login()}>
+      <button css={css({ marginTop: '15px' })} onClick={() => login()}>
         ログイン
       </button>
       <div> {loginMsg}</div>
