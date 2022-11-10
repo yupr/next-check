@@ -1,5 +1,5 @@
 import Button from '@mui/material/Button';
-import styles from './index.module.scss';
+import { css } from '@emotion/react';
 
 const Mui = () => {
   const login = () => {
@@ -8,7 +8,7 @@ const Mui = () => {
 
   return (
     <>
-      <div className={styles.mui}>
+      <div css={css({ margin: '20px 0' })}>
         <h2>MUI Components</h2>
         <Button onClick={login} variant="contained">
           Login
