@@ -1,9 +1,9 @@
 import { useState, ChangeEvent } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import styles from './index.module.scss';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { Post } from '@/types/index';
+import { css } from '@emotion/react';
 
 const Paging = () => {
   const [page, setPage] = useState(1);
@@ -32,9 +32,17 @@ const Paging = () => {
     return <span>Error: {error.message}</span>;
   }
 
+  const paging = css({
+    margin: '20px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  });
+
   return (
-    <div className={styles.paging}>
-      <div className={styles.paging__content}>
+    <div css={paging}>
+      <div css={css({ width: '750px', height: '600px' })}>
         {data.map((result: Post, index: number) => (
           <p key={index}>{result.body}</p>
         ))}

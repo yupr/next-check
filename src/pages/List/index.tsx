@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from './index.module.scss';
+import { css } from '@emotion/react';
 
 interface Item {
   id: number;
@@ -60,21 +60,19 @@ const List = () => {
 
   return (
     <>
-      <ul className={styles.list}>
+      <ul css={css({ listStyle: 'none' })}>
         <input type="checkbox" onChange={(event) => onChangeAll(event)} />
         <span>全て選択 / 解除</span>
 
         {Items.map((item) => {
           return (
-            <div key={item.id} className={styles.list__item}>
+            <div key={item.id} css={css({ display: 'flex' })}>
               <input
                 onChange={(event) => onChange(event, item)}
                 type="checkbox"
                 checked={isChecked(item)}
               />
-              <li className={styles.list__item} data-item-color="blue">
-                {item.name}
-              </li>
+              <li css={css({ color: 'blue' })}>{item.name}</li>
             </div>
           );
         })}
