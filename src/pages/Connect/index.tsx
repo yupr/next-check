@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { useUsers, useLogin } from '@/hooks/useUser';
+import { useUsers, useLogin, useNames } from '@/hooks/useUser';
 import Error from '@/pages/_error';
 import { AxiosError } from 'axios';
 import { css } from '@emotion/react';
 
 const Connect = () => {
-  const [isUser] = useState(true);
   const [loginMsg, setLoginMsg] = useState<string>('');
-  const { data: users, isLoading, isError, error } = useUsers(!!isUser);
+  const { data: names } = useNames();
+  const { data: users, isLoading, isError, error } = useUsers(!!names);
   const fetchLogin = useLogin();
 
   const login = async () => {
