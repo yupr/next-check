@@ -43,12 +43,21 @@ const fetchUsers = async (): Promise<User[]> => {
   return res?.data;
 };
 
-const useUsers = (isUser: boolean) => {
+const useUsers = (names: boolean) => {
   return useApi(['users'], async () => fetchUsers(), {
-    enabled: !!isUser,
+    enabled: !!names,
   });
 };
 
 // ------------------------------------------------
 
-export { useLogin, useUsers };
+const fetchNames = async (): Promise<User[]> => {
+  const res = await axios.get('/names');
+  return res?.data;
+};
+
+const useNames = () => {
+  return useApi(['names'], async () => fetchNames());
+};
+
+export { useLogin, useUsers, useNames };

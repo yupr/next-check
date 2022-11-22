@@ -62,4 +62,18 @@ export const handlers = [
       ])
     );
   }),
+
+  rest.get('/names', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json([
+        {
+          name: 'carl',
+        },
+        {
+          name: 'james',
+        },
+      ])
+    );
+  }),
 ];
