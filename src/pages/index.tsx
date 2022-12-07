@@ -36,8 +36,8 @@ const Home: NextPage = () => {
               <p>render canvas</p>
             </Link>
 
-            <Link href="/mui" className={styles.card}>
-              <h2>MUI</h2>
+            <Link href="/button" className={styles.card}>
+              <h2>Button</h2>
               <p>check material ui</p>
             </Link>
           </div>
