@@ -25,6 +25,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
+# storybook
+storybook-static/
+
 # yarn
 .pnp.*
 .yarn/*

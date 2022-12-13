@@ -1,5 +1,9 @@
+# next.js
 **/.next/**
 **/out/**
+next.config.js
 
 .eslintrc.js
-next.config.js
+
+# storybook
+storybook-static/
