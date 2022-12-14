@@ -7,6 +7,8 @@
     "dev:debug": "NODE_OPTIONS='--inspect' next dev",
     "dev:local": "ts-node --project server/tsconfig.json server/index.ts",
     "build": "next build",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
     "analyze": "ANALYZE=true yarn build",
     "export": "next build && next export",
     "lint": "eslint '**/*.{ts,tsx}'",
@@ -33,14 +35,27 @@
     "react-hook-form": "^7.39.5"
   },
   "devDependencies": {
+    "@babel/core": "^7.20.5",
+    "@mdx-js/react": "^1.6.22",
+    "@storybook/addon-actions": "^6.5.14",
+    "@storybook/addon-docs": "^6.5.14",
+    "@storybook/addon-essentials": "^6.5.14",
+    "@storybook/addon-interactions": "^6.5.14",
+    "@storybook/addon-links": "^6.5.14",
+    "@storybook/builder-webpack5": "^6.5.14",
+    "@storybook/manager-webpack5": "^6.5.14",
+    "@storybook/react": "^6.5.14",
+    "@storybook/testing-library": "^0.0.13",
     "@types/express": "^4.17.14",
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.25",
     "@typescript-eslint/eslint-plugin": "^5.44.0",
     "@typescript-eslint/parser": "^5.44.0",
+    "babel-loader": "^8.3.0",
     "eslint": "^8.28.0",
     "eslint-config-next": "^13.0.4",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-storybook": "^0.6.8",
     "express": "^4.18.2",
     "http-proxy-middleware": "^2.0.6",
     "husky": "^8.0.2",
@@ -53,5 +68,8 @@
   },
   "msw": {
     "workerDirectory": "public"
+  },
+  "resolutions": {
+    "enhanced-resolve": "5.10.0"
   }
 }
