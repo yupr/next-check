@@ -39,6 +39,10 @@ const Home: NextPage = () => {
               <h2>Pagination</h2>
               <p>check material ui</p>
             </Link>
+
+            <Link href="/animation/sample1" className={styles.card}>
+              <h2>Animation sample1</h2>
+            </Link>
           </div>
         </main>
       </div>
