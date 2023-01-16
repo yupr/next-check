@@ -7,10 +7,11 @@
     "dev:debug": "NODE_OPTIONS='--inspect' next dev",
     "dev:local": "ts-node --project server/tsconfig.json server/index.ts",
     "build": "next build",
+    "export": "next build && next export",
+    "delete-map-files": "find out -name '*.map' -delete",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "analyze": "ANALYZE=true yarn build",
-    "export": "next build && next export",
     "lint": "eslint '**/*.{ts,tsx}'",
     "fmt": "prettier --write '**/*.{css,scss,js,jsx,ts,tsx}'",
     "prepare": "husky install"
