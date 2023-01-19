@@ -17,8 +17,6 @@ interface LoginRes {
   token?: string;
 }
 
-// ------------------------------------------------
-
 const fetchLogin = async (params: Login): Promise<LoginRes> => {
   const res: AxiosResponse<LoginRes> = await axios.post('/login', params);
 
