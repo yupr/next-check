@@ -1,6 +1,6 @@
 import { Renderer, Text, Container, Sprite, TextStyle, Texture } from 'pixi.js';
 import { Ticker } from '@pixi/core';
-import labelData from '@/label.json';
+import { LabelViewInfo } from '@/types';
 
 /**
  * canvasを描画
@@ -20,9 +20,12 @@ export class LabelView {
 
   private containerSize: { width: number; height: number };
 
-  constructor(element: HTMLDivElement | null) {
+  private labelViewInfo: LabelViewInfo;
+
+  constructor(element: HTMLDivElement | null, labelViewInfo: LabelViewInfo) {
     this.element = element;
-    this.containerSize = labelData.container.size;
+    this.containerSize = labelViewInfo.container?.size;
+    this.labelViewInfo = labelViewInfo;
 
     this.renderer = new Renderer({
       width: this.containerSize.width,
@@ -54,18 +57,18 @@ export class LabelView {
   }
 
   setup() {
-    let sprite = new Sprite();
-    sprite = new Sprite(Texture.from('/img/bg_particles.png'));
+    const sprite = new Sprite(Texture.from('/img/bg_particles.png'));
     sprite.zIndex = 1;
     this.container.addChild(sprite);
   }
 
   changeText(_name: string) {
+    if (!this.labelViewInfo) return;
     if (this.nameText) {
       this.nameText.destroy();
     }
 
-    const { fontSize, position } = labelData.items.nickname;
+    const { fontSize, position } = this.labelViewInfo.items.nickname;
     const textStyle = new TextStyle({
       fontSize: fontSize,
       fontWeight: 'normal',
@@ -90,10 +93,10 @@ export class LabelView {
   // 縦横比を保ったまま矩形の大きさに合わせてリサイズ
   keepAspectResize() {
     // 矩形の大きさを指定
-    const borderWidth = 600;
+    const borderWidth = 700;
     const borderHeight = 500;
 
-    // 元画像の大きさ対する矩形の幅、高さの比率
+    // 元画像の大きさに対する矩形の幅、高さの比率
     const ratio = Math.min(
       borderWidth / this.containerSize.width,
       borderHeight / this.containerSize.height

@@ -1,23 +1,7 @@
 import axios from '@/lib/axios';
 import { AxiosResponse } from 'axios';
 import { useApi, useOptimisticMutation } from '@/hooks/useApi';
-
-interface User {
-  id: number;
-  name: string;
-}
-
-interface Login {
-  userName: string;
-  pass: string | number;
-}
-
-interface LoginRes {
-  message?: string;
-  token?: string;
-}
-
-// ------------------------------------------------
+import { User, Login, LoginRes } from '@/types';
 
 const fetchLogin = async (params: Login): Promise<LoginRes> => {
   const res: AxiosResponse<LoginRes> = await axios.post('/login', params);
