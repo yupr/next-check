@@ -1,8 +1,21 @@
 // API ---------------------------------------
+
+// User ----------
 export interface User {
   id: number;
   name: string;
 }
+export interface Login {
+  userName: string;
+  pass: string | number;
+}
+
+export interface LoginRes {
+  message?: string;
+  token?: string;
+}
+
+// ----------------
 
 export interface Post {
   userId: number;

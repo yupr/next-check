@@ -15,9 +15,9 @@ const style = {
   p: 4,
 };
 
-type BasicMOdalType = { message: string };
+type Props = { message: string };
 
-export const BasicModal = ({ message }: BasicMOdalType) => {
+export const BasicModal = ({ message }: Props) => {
   const [open, setOpen] = useState(true);
   const handleClose = () => setOpen(false);
 
