@@ -1,23 +1,26 @@
 import { useEffect, useRef, useState } from 'react';
 import { LabelView } from 'src/lib/LabelView';
 import styles from './index.module.scss';
+import { useLabelView } from '@/hooks/useLabel';
 
 let labelView: LabelView | null;
 
 const Canvas = () => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [name, setName] = useState('');
+  const { data: labelViewInfo } = useLabelView();
 
   useEffect(() => {
-    labelView = new LabelView(ref.current);
+    if (!labelViewInfo) return;
+
+    labelView = new LabelView(ref.current, labelViewInfo);
 
     return () => {
       if (labelView) {
-        labelView.toDataURL();
         labelView.destroy();
       }
     };
-  }, []);
+  }, [labelViewInfo]);
 
   useEffect(() => {
     if (labelView) labelView.changeText(name);
