@@ -31,7 +31,7 @@ export const BasicModal = ({ message }: Props) => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Error
+            Modal
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             {message}

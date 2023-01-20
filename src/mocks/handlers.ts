@@ -39,8 +39,8 @@ export const handlers = [
 
   rest.get('/users', (req, res, ctx) => {
     return res(
-      // ctx.status(200),
-      ctx.status(500),
+      ctx.status(200),
+      // ctx.status(500),
 
       ctx.json([
         {

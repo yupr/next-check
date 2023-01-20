@@ -1,15 +1,14 @@
 import { useState } from 'react';
 import { useUsers, useLogin, useNames } from '@/hooks/useUser';
-// import Error from '@/pages/_error';
 import { AxiosError } from 'axios';
 import { css } from '@emotion/react';
-import { BasicModal } from '@/components/organisms/BasicModal';
+import Error from '@/pages/_error';
 
 const Connect = () => {
-  const [loginMsg, setLoginMsg] = useState<string>('');
   const { data: names } = useNames();
   const { data: users, isLoading, isError, error } = useUsers(!!names);
   const fetchLogin = useLogin();
+  const [loginMsg, setLoginMsg] = useState<string>('');
 
   const login = async () => {
     try {
@@ -37,9 +36,8 @@ const Connect = () => {
   }
 
   if (isError && error) {
-    return <BasicModal message={error.message} />;
-    // const statusCode = error.response?.status;
-    // return <Error statusCode={statusCode}></Error>;
+    const statusCode = error.response?.status;
+    return <Error statusCode={statusCode}></Error>;
   }
 
   return (
