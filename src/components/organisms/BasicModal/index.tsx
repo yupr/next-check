@@ -15,7 +15,9 @@ const style = {
   p: 4,
 };
 
-type Props = { message: string };
+interface Props {
+  message: string;
+}
 
 export const BasicModal = ({ message }: Props) => {
   const [open, setOpen] = useState(true);
