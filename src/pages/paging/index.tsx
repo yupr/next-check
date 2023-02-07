@@ -24,6 +24,7 @@ const Paging = () => {
     setPage(pageNum);
   };
 
+  // Todo: 共通化 ---------------------
   if (isLoading) {
     return <span>Loading...</span>;
   }
@@ -31,6 +32,7 @@ const Paging = () => {
   if (isError) {
     return <span>Error: {error.message}</span>;
   }
+  // --------------------------------
 
   const paging = css({
     margin: '20px',
