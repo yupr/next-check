@@ -8,7 +8,7 @@ import {
 import { AxiosError } from 'axios';
 
 export const useApi = <
-  TQueryKey extends [string, (Record<string, unknown> | string)?],
+  TQueryKey extends [string, (string | number)?],
   TQueryFnData,
   TError = AxiosError,
   TData = TQueryFnData

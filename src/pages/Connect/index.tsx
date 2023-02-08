@@ -6,7 +6,7 @@ import Error from '@/pages/_error';
 
 const Connect = () => {
   const { data: names } = useNames();
-  const { data: users, isLoading, isError, error } = useUsers(!!names);
+  const { data: users, isLoading, isError, error } = useUsers(names);
   const fetchLogin = useLogin();
   const [loginMsg, setLoginMsg] = useState<string>('');
 
