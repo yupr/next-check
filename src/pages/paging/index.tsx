@@ -1,24 +1,13 @@
 import { useState, ChangeEvent } from 'react';
-import { useQuery } from '@tanstack/react-query';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import { Container, Box } from '@mui/system';
+import { usePosts } from '@/hooks/usePost';
 import { Post } from '@/types/index';
-import { css } from '@emotion/react';
 
 const Paging = () => {
   const [page, setPage] = useState(1);
-
-  const fetchProjects = (page = 1) =>
-    fetch(
-      `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=10`
-    ).then((res) => res.json());
-
-  const { isLoading, isError, error, data, isPreviousData } = useQuery<
-    Post[],
-    Error
-  >(['projects', page], () => fetchProjects(page), {
-    keepPreviousData: true,
-  });
+  const { isLoading, isError, error, data, isPreviousData } = usePosts(page);
 
   const updatePageNumber = (event: ChangeEvent<unknown>, pageNum: number) => {
     setPage(pageNum);
@@ -32,23 +21,15 @@ const Paging = () => {
     return <span>Error: {error.message}</span>;
   }
 
-  const paging = css({
-    margin: '20px',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  });
-
   return (
-    <div css={paging}>
-      <div css={css({ width: '750px', height: '600px' })}>
+    <Container maxWidth="md" sx={{ marginTop: 7 }}>
+      <Box>
         {data.map((result: Post, index: number) => (
           <p key={index}>{result.body}</p>
         ))}
-      </div>
+      </Box>
 
-      <Stack sx={{ mt: 1 }}>
+      <Stack sx={{ mt: 3, alignItems: 'center' }}>
         <Pagination
           count={10}
           shape="rounded"
@@ -58,7 +39,7 @@ const Paging = () => {
           disabled={isPreviousData || !data}
         />
       </Stack>
-    </div>
+    </Container>
   );
 };
 

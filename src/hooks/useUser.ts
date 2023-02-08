@@ -27,7 +27,7 @@ const fetchUsers = async (): Promise<User[]> => {
   return res?.data;
 };
 
-const useUsers = (names: boolean) => {
+const useUsers = (names?: User[]) => {
   return useApi(['users'], async () => fetchUsers(), {
     enabled: !!names,
   });
