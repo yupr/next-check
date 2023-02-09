@@ -15,11 +15,6 @@ const Home: NextPage = () => {
           <h1 className={styles.title}>Link</h1>
 
           <div className={styles.grid}>
-            <Link href="/list" className={styles.card}>
-              <h2>List</h2>
-              <p>For check checkBox list</p>
-            </Link>
-
             <Link href="/connect" className={styles.card}>
               <h2>Connect &rarr;</h2>
               <p>For check api connect</p>
@@ -35,7 +30,7 @@ const Home: NextPage = () => {
               <p>render canvas</p>
             </Link>
 
-            <Link href="/paging" className={styles.card}>
+            <Link href="/mui/paging" className={styles.card}>
               <h2>Pagination</h2>
               <p>check material ui</p>
             </Link>
