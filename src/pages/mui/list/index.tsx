@@ -9,7 +9,7 @@ const List = () => {
   const [checked, setChecked] = useState<boolean[]>(items.map(() => false));
 
   const checkAllItem = (event: ChangeEvent<HTMLInputElement>) => {
-    setChecked(items.map(() => !!event.target.checked));
+    setChecked(items.map(() => event.target.checked));
   };
 
   const checkItem = (index: number, event: ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +23,7 @@ const List = () => {
   }, [checked]);
 
   const isIndeterminate = useMemo(() => {
-    // 全てチェック済みではないが、少なくとも1つチェックされている
+    // 全てチェック済みではない & 少なくとも1つチェックされている
     return !isAllChecked && checked.includes(true);
   }, [checked, isAllChecked]);
 
