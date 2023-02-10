@@ -30,10 +30,17 @@ const Home: NextPage = () => {
               <p>render canvas</p>
             </Link>
 
-            <Link href="/mui/paging" className={styles.card}>
-              <h2>Pagination</h2>
-              <p>check material ui</p>
-            </Link>
+            <div className={styles.card}>
+              <h2>Material UI</h2>
+
+              <Link href="/mui/paging">
+                <h3>Pagination</h3>
+              </Link>
+
+              <Link href="/mui/list">
+                <h3>List</h3>
+              </Link>
+            </div>
 
             <div className={styles.card}>
               <h2>Animation</h2>
