@@ -10,4 +10,4 @@ const initMocks = async () => {
   }
 };
 
-export default initMocks;
+export { initMocks };

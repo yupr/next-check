@@ -16,6 +16,12 @@ export const handlers = [
         })
       );
     }
+    return res(
+      ctx.status(400),
+      ctx.json({
+        message: 'bad request',
+      })
+    );
   }),
 
   rest.get('/user', (req, res, ctx) => {

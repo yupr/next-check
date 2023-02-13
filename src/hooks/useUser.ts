@@ -3,10 +3,9 @@ import { AxiosResponse } from 'axios';
 import { useApi, useOptimisticMutation } from '@/hooks/useApi';
 import { User, Login, LoginRes } from '@/types';
 
-const fetchLogin = async (params: Login): Promise<LoginRes> => {
+const postLogin = async (params: Login): Promise<LoginRes> => {
   const res: AxiosResponse<LoginRes> = await axios.post('/login', params);
-
-  // レスポンスの値をヘッダーにセットできるかテスト
+  // Todo: レスポンスの値をヘッダーにセット
   // const token = res.data.token;
   // if (token) {
   //   axios.defaults.headers.common['Authorization'] = token;
@@ -14,34 +13,30 @@ const fetchLogin = async (params: Login): Promise<LoginRes> => {
   return res?.data;
 };
 
-const useLogin = () => {
-  return useOptimisticMutation(['login'], async (params: Login) =>
-    fetchLogin(params)
-  );
-};
-
-// ------------------------------------------------
-
-const fetchUsers = async (): Promise<User[]> => {
+const getUsers = async (): Promise<User[]> => {
   const res = await axios.get('/users');
   return res?.data;
 };
 
-const useUsers = (names?: User[]) => {
-  return useApi(['users'], async () => fetchUsers(), {
-    enabled: !!names,
-  });
-};
-
-// ------------------------------------------------
-
-const fetchNames = async (): Promise<User[]> => {
+const getNames = async (): Promise<User[]> => {
   const res = await axios.get('/names');
   return res?.data;
 };
 
+const useLogin = () => {
+  return useOptimisticMutation(['login'], async (params: Login) =>
+    postLogin(params)
+  );
+};
+
+const useUsers = (names?: User[]) => {
+  return useApi(['users'], async () => getUsers(), {
+    enabled: !!names,
+  });
+};
+
 const useNames = () => {
-  return useApi(['names'], async () => fetchNames());
+  return useApi(['names'], async () => getNames());
 };
 
 export { useLogin, useUsers, useNames };

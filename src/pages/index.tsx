@@ -37,7 +37,7 @@ const Home: NextPage = () => {
                 <h3>Pagination</h3>
               </Link>
 
-              <Link href="/mui/list">
+              <Link href="/mui/checkbox">
                 <h3>List</h3>
               </Link>
             </div>
