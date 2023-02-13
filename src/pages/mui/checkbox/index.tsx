@@ -5,7 +5,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 
 const items = ['item1', 'item2', 'item3', 'item4', 'item5'];
 
-const List = () => {
+const CheckBox = () => {
   const [checked, setChecked] = useState<boolean[]>(items.map(() => false));
 
   const checkAllItem = (event: ChangeEvent<HTMLInputElement>) => {
@@ -60,4 +60,4 @@ const List = () => {
   );
 };
 
-export default List;
+export default CheckBox;

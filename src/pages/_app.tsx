@@ -5,11 +5,7 @@ import { CountProvider } from 'src/lib/contexts/CountContext';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Head from 'next/head';
-import initMocks from '@/mocks';
-
-if (process.env.NEXT_PUBLIC_API_MOCKING === 'true') {
-  initMocks();
-}
+import { initMocks } from '@/mocks';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,6 +17,9 @@ const queryClient = new QueryClient({
 });
 
 const App = ({ Component, pageProps }: AppProps) => {
+  if (process.env.NEXT_PUBLIC_API_MOCKING === 'true') {
+    initMocks();
+  }
   return (
     <QueryClientProvider client={queryClient}>
       <CountProvider>
