@@ -12,7 +12,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "analyze": "ANALYZE=true yarn build",
-    "lint": "eslint '**/*.{ts,tsx}'",
+    "lint": "eslint '**/*.{ts,tsx}' --cache",
     "fmt": "prettier --write '**/*.{css,scss,js,jsx,ts,tsx}'",
     "prepare": "husky install"
   },
