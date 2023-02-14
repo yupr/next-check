@@ -3,5 +3,8 @@
 /out/
 next.config.js
 
+.eslintrc.js
+public/**
+
 # storybook
 storybook-static/**
