@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { useUsers, useLogin, useNames } from '@/hooks/useUser';
+import { useUser } from '@/hooks/useUser';
+import { useLogin } from '@/hooks/auth';
 import { AxiosError } from 'axios';
 import { css } from '@emotion/react';
-import Error from '@/pages/_error';
+// import Error from '@/pages/_error';
 
 const Connect = () => {
-  const { data: names } = useNames();
-  const { data: users, isLoading, isError, error } = useUsers(names);
+  const { data: user, isLoading } = useUser();
   const fetchLogin = useLogin();
   const [loginMsg, setLoginMsg] = useState<string>('');
 
@@ -18,11 +18,17 @@ const Connect = () => {
           if (res?.message) {
             setLoginMsg(res.message);
           }
+          localStorage.setItem('isAuth', 'true');
         },
         onError: (err) => {
           if (err instanceof AxiosError) {
             const message = err?.message || 'server error';
             console.error(message);
+          }
+
+          const isLSAuth = localStorage.getItem('isAuth');
+          if (isLSAuth) {
+            localStorage.setItem('isAuth', 'false');
           }
         },
       }
@@ -33,24 +39,30 @@ const Connect = () => {
     return <span>Loading...</span>;
   }
 
-  if (isError) {
-    const statusCode = error.response?.status;
-    return <Error statusCode={statusCode}></Error>;
-  }
+  // if (isError) {
+  //   const statusCode = error.response?.status;
+
+  //   // TODO: api通信の失敗時のレスポンスの型を定義
+  //   const errMsg = 'Not authorized';
+  //   return <Error statusCode={statusCode} message={errMsg}></Error>;
+  // }
 
   return (
     <div css={css({ margin: '15px' })}>
-      <h2>ユーザ一覧</h2>
-      <div>
-        {users.map((user) => (
-          <div key={user.id}>{user.name}</div>
-        ))}
-      </div>
-
-      <button css={css({ marginTop: '15px' })} onClick={() => login()}>
-        ログイン
-      </button>
-      <div> {loginMsg}</div>
+      <h2>ユーザー情報</h2>
+      {user ? (
+        <>
+          <div>id: {user.id}</div>
+          <div>name: {user.name}</div>
+        </>
+      ) : (
+        <>
+          <button css={css({ marginTop: '15px' })} onClick={() => login()}>
+            ログイン
+          </button>
+          <div> {loginMsg}</div>
+        </>
+      )}
     </div>
   );
 };
