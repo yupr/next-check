@@ -3,13 +3,14 @@ import { NextPage, NextPageContext } from 'next';
 
 interface Props {
   statusCode?: number;
+  message?: string;
 }
 
-const Error: NextPage<Props> = ({ statusCode }) => {
+const Error: NextPage<Props> = ({ statusCode, message }) => {
   return (
     <div className="error-container">
       {statusCode && <h1>Error: {statusCode}</h1>}
-      <p>We are sorry! There was an error</p>
+      <p>{message ? message : 'We are sorry! There was an error'}</p>
       <Link href="/">Go back home</Link>
     </div>
   );

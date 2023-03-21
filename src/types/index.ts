@@ -1,5 +1,3 @@
-// API ---------------------------------------
-
 // User ----------
 export interface User {
   id: number;
@@ -39,5 +37,3 @@ export interface LabelViewInfo {
     };
   };
 }
-
-// ---------------------------------------------
