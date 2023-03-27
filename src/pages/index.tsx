@@ -48,10 +48,6 @@ const Home: NextPage = () => {
               <Link href="/animation/sample1">
                 <h3>sample1</h3>
               </Link>
-
-              {/* <Link href="/animation/sample2">
-                <h3>sample2</h3>
-              </Link> */}
             </div>
           </div>
         </main>
