@@ -14,6 +14,12 @@ export const getUtcTime = () => {
   return utcTime;
 };
 
+// 現在時間に5分加算したUTCを返す
+// export const getAddUtcTime = () => {
+//   const addUtcTime = dayjs().utc().add(5, 'm').format();
+//   return addUtcTime;
+// };
+
 // 時間
 export const getTime = () => {
   const time = dayjs().tz().format();
@@ -35,5 +41,11 @@ export const getDateJa = () => {
 // 時間 -> 日付 (日本語表記)
 export const getTimeToDateJa = (time: string) => {
   const date = dayjs(time).tz().format('MM月DD日');
+  return date;
+};
+
+// UTC -> 年月日 (日本語表記)
+export const getTimeUtcToJa = (time: string) => {
+  const date = dayjs(time).tz().format('YYYY年MM月DD日HH:mm');
   return date;
 };
