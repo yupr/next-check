@@ -1,10 +1,11 @@
-import axios from '@/lib/axios';
 import { useApi } from '@/hooks/useApi';
-import { User } from '@/types';
+import { User } from '@/api/cli/user';
+import { UserApiFactory } from '@/api/cli/user';
 
 const getUser = async (): Promise<User> => {
-  const res = await axios.get('/user');
-  return res?.data;
+  const res = await UserApiFactory().loginUser();
+  console.log('res', res.data);
+  return res.data;
 };
 
 const useUser = () => {

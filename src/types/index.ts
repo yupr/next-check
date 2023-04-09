@@ -1,8 +1,3 @@
-// User ----------
-export interface User {
-  id: number;
-  name: string;
-}
 export interface Login {
   userName: string;
   pass: string | number;
