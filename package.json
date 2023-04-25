@@ -14,7 +14,7 @@
     "analyze": "ANALYZE=true yarn build",
     "lint": "eslint '**/*.{ts,tsx}' --cache",
     "fmt": "prettier --write --cache --cache-strategy metadata '**/*.{css,scss,js,jsx,ts,tsx}'",
-    "gen:api-cli": "openapi-generator-cli generate -g typescript-axios -i ./src/api/docs/**/swagger.json -o ./src/api/cli/user",
+    "gen:api-cli": "bash src/shell/genOpenapiCli.sh",
     "prepare": "husky install"
   },
   "dependencies": {

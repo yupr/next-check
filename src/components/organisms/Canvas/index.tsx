@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { LabelView } from 'src/lib/LabelView';
+import { LabelView } from '@/lib/labelView';
 import styles from './index.module.scss';
 import { useLabelView } from '@/hooks/useLabel';
 
