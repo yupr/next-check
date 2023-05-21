@@ -3,7 +3,7 @@
 dir_path=(src/api/docs/*)
 
 # 念の為、直下のフォルダのみを検出
-dirs=$(find "${dir_path[0]}" -maxdepth 1 -type d)
+dirs=$(find "${dir_path[0]}" -maxdepth 0 -type d)
 
 for dir in $dirs; do
   # 生成元
