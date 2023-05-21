@@ -8,3 +8,6 @@ public/**
 
 # storybook
 storybook-static/**
+
+# api client
+src/api/**
