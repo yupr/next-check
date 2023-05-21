@@ -12,199 +12,158 @@
  * Do not edit the class manually.
  */
 
+
 import type { Configuration } from './configuration';
 import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import {
-  DUMMY_BASE_URL,
-  assertParamExists,
-  setApiKeyToObject,
-  setBasicAuthToObject,
-  setBearerAuthToObject,
-  setOAuthToObject,
-  setSearchParams,
-  serializeDataIfNeeded,
-  toPathString,
-  createRequestFunction,
-} from './common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from './common';
 import type { RequestArgs } from './base';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError } from './base';
 
 /**
- *
+ * 
  * @export
  * @interface ApiResponse
  */
 export interface ApiResponse {
-  /**
-   *
-   * @type {number}
-   * @memberof ApiResponse
-   */
-  code?: number;
-  /**
-   *
-   * @type {string}
-   * @memberof ApiResponse
-   */
-  type?: string;
-  /**
-   *
-   * @type {string}
-   * @memberof ApiResponse
-   */
-  message?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ApiResponse
+     */
+    'code'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiResponse
+     */
+    'type'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ApiResponse
+     */
+    'message'?: string;
 }
 /**
- *
+ * 
  * @export
  * @interface ModelError
  */
 export interface ModelError {
-  /**
-   *
-   * @type {string}
-   * @memberof ModelError
-   */
-  message?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelError
+     */
+    'message'?: string;
 }
 /**
- *
+ * 
  * @export
  * @interface User
  */
 export interface User {
-  /**
-   *
-   * @type {number}
-   * @memberof User
-   */
-  id?: number;
-  /**
-   *
-   * @type {string}
-   * @memberof User
-   */
-  name?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof User
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'name'?: string;
 }
 
 /**
  * UserApi - axios parameter creator
  * @export
  */
-export const UserApiAxiosParamCreator = function (
-  configuration?: Configuration
-) {
-  return {
-    /**
-     * Get user info
-     * @summary ユーザー情報取得
-     * @param {string} [isAuth] ログイン済みかどうか
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    loginUser: async (
-      isAuth?: string,
-      options: AxiosRequestConfig = {}
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/user`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
+export const UserApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Get user info
+         * @summary ユーザー情報取得
+         * @param {string} [isAuth] ログイン済みかどうか
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        loginUser: async (isAuth?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/user`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
 
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
 
-      if (isAuth !== undefined) {
-        localVarQueryParameter['isAuth'] = isAuth;
-      }
+            if (isAuth !== undefined) {
+                localVarQueryParameter['isAuth'] = isAuth;
+            }
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
 
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
 };
 
 /**
  * UserApi - functional programming interface
  * @export
  */
-export const UserApiFp = function (configuration?: Configuration) {
-  const localVarAxiosParamCreator = UserApiAxiosParamCreator(configuration);
-  return {
-    /**
-     * Get user info
-     * @summary ユーザー情報取得
-     * @param {string} [isAuth] ログイン済みかどうか
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async loginUser(
-      isAuth?: string,
-      options?: AxiosRequestConfig
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>
-    > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.loginUser(
-        isAuth,
-        options
-      );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-  };
+export const UserApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = UserApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Get user info
+         * @summary ユーザー情報取得
+         * @param {string} [isAuth] ログイン済みかどうか
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async loginUser(isAuth?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<User>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.loginUser(isAuth, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
 };
 
 /**
  * UserApi - factory interface
  * @export
  */
-export const UserApiFactory = function (
-  configuration?: Configuration,
-  basePath?: string,
-  axios?: AxiosInstance
-) {
-  const localVarFp = UserApiFp(configuration);
-  return {
-    /**
-     * Get user info
-     * @summary ユーザー情報取得
-     * @param {string} [isAuth] ログイン済みかどうか
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    loginUser(isAuth?: string, options?: any): AxiosPromise<User> {
-      return localVarFp
-        .loginUser(isAuth, options)
-        .then((request) => request(axios, basePath));
-    },
-  };
+export const UserApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = UserApiFp(configuration)
+    return {
+        /**
+         * Get user info
+         * @summary ユーザー情報取得
+         * @param {string} [isAuth] ログイン済みかどうか
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        loginUser(isAuth?: string, options?: any): AxiosPromise<User> {
+            return localVarFp.loginUser(isAuth, options).then((request) => request(axios, basePath));
+        },
+    };
 };
 
 /**
@@ -214,17 +173,17 @@ export const UserApiFactory = function (
  * @extends {BaseAPI}
  */
 export class UserApi extends BaseAPI {
-  /**
-   * Get user info
-   * @summary ユーザー情報取得
-   * @param {string} [isAuth] ログイン済みかどうか
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof UserApi
-   */
-  public loginUser(isAuth?: string, options?: AxiosRequestConfig) {
-    return UserApiFp(this.configuration)
-      .loginUser(isAuth, options)
-      .then((request) => request(this.axios, this.basePath));
-  }
+    /**
+     * Get user info
+     * @summary ユーザー情報取得
+     * @param {string} [isAuth] ログイン済みかどうか
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public loginUser(isAuth?: string, options?: AxiosRequestConfig) {
+        return UserApiFp(this.configuration).loginUser(isAuth, options).then((request) => request(this.axios, this.basePath));
+    }
 }
+
+
