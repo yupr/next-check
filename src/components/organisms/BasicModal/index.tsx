@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { Button } from '@mui/material';
 
 const style = {
   position: 'absolute' as const,
@@ -16,10 +17,11 @@ const style = {
 };
 
 interface Props {
+  title: string;
   message: string;
 }
 
-export const BasicModal = ({ message }: Props) => {
+export const BasicModal = ({ title, message }: Props) => {
   const [open, setOpen] = useState(true);
   const handleClose = () => setOpen(false);
 
@@ -33,11 +35,14 @@ export const BasicModal = ({ message }: Props) => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Modal
+            {title}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             {message}
           </Typography>
+          <Box sx={{ width: '100%', display: 'flex', justifyContent: 'end' }}>
+            <Button onClick={handleClose}>閉じる</Button>
+          </Box>
         </Box>
       </Modal>
     </div>

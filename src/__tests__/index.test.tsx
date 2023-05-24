@@ -1,15 +1,22 @@
-import { render, screen } from '@testing-library/react';
-import Home from '../pages/index';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { BasicModal } from '@/components/organisms/BasicModal';
 import '@testing-library/jest-dom';
 
-describe('Home', () => {
-  it('renders a heading', () => {
-    render(<Home />);
+describe('BasicModal', () => {
+  test('モーダルが表示される。', () => {
+    render(<BasicModal title="タイトル" message="メッセージ" />);
 
-    const heading = screen.getByRole('heading', {
-      name: /welcome to next\.js!/i,
-    });
+    const handleCloseText = screen.getByText('閉じる');
+    expect(handleCloseText).toBeInTheDocument();
+  });
 
-    expect(heading).toBeInTheDocument();
+  test('閉じるボタンを押下してモーダルを閉じることができる。', () => {
+    render(<BasicModal title="タイトル" message="メッセージ" />);
+
+    const handleCloseButton = screen.queryByText('閉じる');
+    if (handleCloseButton) {
+      fireEvent.click(handleCloseButton);
+    }
+    expect(handleCloseButton).not.toBeInTheDocument();
   });
 });
