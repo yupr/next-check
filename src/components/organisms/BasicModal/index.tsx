@@ -17,8 +17,8 @@ const style = {
 };
 
 interface Props {
-  title: string;
-  message: string;
+  title?: string;
+  message?: string;
 }
 
 export const BasicModal = ({ title, message }: Props) => {
