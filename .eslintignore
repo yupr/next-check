@@ -1,8 +1,11 @@
 # next.js
 /.next/
 /out/
-next.config.js
 
+# tsのプロジェクトを使用しているため、拡張子が js, mjs のファイルをeslintの対象外にする。
+# NOTE: lintのルールを適用したい場合、tsconfig の project に該当のファイルを指定する。
+next.config.js
+**/*.mjs
 .eslintrc.js
 public/**
 
