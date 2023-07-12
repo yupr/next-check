@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Head from 'next/head';
 import { initMocks } from '@/mocks';
 import '@/i18n/locales';
+import { useEffect, useState } from 'react';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -17,10 +18,26 @@ const queryClient = new QueryClient({
   },
 });
 
+const isApiMock = process.env.NEXT_PUBLIC_API_MOCKING === 'true';
+
 const App = ({ Component, pageProps }: AppProps) => {
-  if (process.env.NEXT_PUBLIC_API_MOCKING === 'true') {
-    initMocks();
+  const [shouldRender, setShouldRender] = useState(!isApiMock);
+
+  useEffect(() => {
+    const setup = async () => {
+      await initMocks();
+      setShouldRender(true);
+    };
+
+    if (isApiMock) {
+      setup();
+    }
+  }, []);
+
+  if (!shouldRender) {
+    return null;
   }
+
   return (
     <QueryClientProvider client={queryClient}>
       <CountProvider>
