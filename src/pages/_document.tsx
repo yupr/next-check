@@ -10,7 +10,8 @@ class MyDocument extends Document {
             rel="stylesheet"
           /> */}
           <link
-            rel="stylesheet"
+            rel="preload"
+            as="font"
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
           />
         </Head>
