@@ -28,7 +28,6 @@ const Title = memo(() => {
   // console.log('Title component');
   return <h2>useCallBackTest vol.1</h2>;
 });
-Title.displayName = 'Title';
 
 const Count = memo(({ text, countState }: CountProps) => {
   // console.log('Count child component', text, countState);
@@ -39,8 +38,6 @@ const Count = memo(({ text, countState }: CountProps) => {
   );
 });
 
-Count.displayName = 'Count';
-
 const Button = memo(({ handleClick, value }: ButtonProps) => {
   // console.log('Button child component', value);
   return (
@@ -50,6 +47,8 @@ const Button = memo(({ handleClick, value }: ButtonProps) => {
   );
 });
 
+Title.displayName = 'Title';
+Count.displayName = 'Count';
 Button.displayName = 'Button';
 
 const Memo = () => {
