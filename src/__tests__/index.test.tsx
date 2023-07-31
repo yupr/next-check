@@ -1,20 +1,21 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BasicModal } from '@/components/organisms/BasicModal';
 import '@testing-library/jest-dom';
+import { I18nextProvider } from 'react-i18next';
+import Inspect from '@/pages/inspect';
+import i18n from '@/i18n/locales';
+import mockRouter from 'next-router-mock';
 
-// next/router をモック化
-jest.mock('next/router', () => ({
-  useRouter() {
-    return {
-      query: '111111',
-    };
-  },
-}));
+jest.mock('next/router', () => require('next-router-mock'));
 
 describe('BasicModal', () => {
   test('モーダルが表示される。', () => {
-    render(<BasicModal />);
-
+    render(
+      // NOTE: 1度、I18nextProviderでwrapperしていればそれ以降のテストでも多言語化のテストが可能。
+      <I18nextProvider i18n={i18n}>
+        <BasicModal title="タイトル" />
+      </I18nextProvider>
+    );
     const handleCloseText = screen.getByText('閉じる');
     expect(handleCloseText).toBeInTheDocument();
   });
@@ -32,12 +33,26 @@ describe('BasicModal', () => {
   test('閉じるボタンを押下してモーダルを閉じることができる。', () => {
     render(<BasicModal title="タイトル" message="メッセージ" />);
 
-    const handleCloseButton = screen.queryByText('閉じる');
+    const handleCloseButton = screen.getByText('閉じる');
     if (handleCloseButton) {
       fireEvent.click(handleCloseButton);
     }
 
     // NOTE: 該当の要素が取得できないということはモーダルが閉じたことを意味する。
     expect(handleCloseButton).not.toBeInTheDocument();
+  });
+});
+
+/**
+ *  NOTE: コンポーネントのマウント後に、routeの変更で関数が実行され、stateが更新される。
+ *  NOTE: 更新後のstateを元にコンポーネントがレンダリングされたかどうかの確認。
+ */
+
+describe('Inspect', () => {
+  test('ルートが変わった場合、Inspect2コンポーネントが表示される。', async () => {
+    render(<Inspect />);
+
+    await waitFor(() => mockRouter.setCurrentUrl('/validation'));
+    expect(screen.getByText('inspect2')).toBeInTheDocument();
   });
 });

@@ -8,6 +8,7 @@ import Head from 'next/head';
 import { initMocks } from '@/mocks';
 import '@/i18n/locales';
 import { useEffect, useState } from 'react';
+import Inspect from '@/pages/inspect';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -45,6 +46,7 @@ const App = ({ Component, pageProps }: AppProps) => {
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>
         <Component {...pageProps} />
+        <Inspect />
       </CountProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
