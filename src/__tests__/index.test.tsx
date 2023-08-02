@@ -44,10 +44,9 @@ describe('BasicModal', () => {
 });
 
 /**
- *  NOTE: コンポーネントのマウント後に、routeの変更で関数が実行され、stateが更新される。
- *  NOTE: 更新後のstateを元にコンポーネントがレンダリングされたかどうかの確認。
+ *  コンポーネントのマウント後に、route の変更でstateが更新された後、
+ *  更新後のstateを元にコンポーネントがレンダリングされたかどうかの確認するためのテスト。
  */
-
 describe('Inspect', () => {
   test('ルートが変わった場合、Inspect2コンポーネントが表示される。', async () => {
     render(<Inspect />);
