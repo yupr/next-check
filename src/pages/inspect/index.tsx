@@ -1,5 +1,4 @@
 const Inspect = () => {
-
   return (
     <>
       <div>inspect</div>
