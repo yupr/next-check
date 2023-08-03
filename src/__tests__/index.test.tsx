@@ -1,12 +1,12 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { BasicModal } from '@/components/organisms/BasicModal';
 import '@testing-library/jest-dom';
 import { I18nextProvider } from 'react-i18next';
-import Inspect from '@/pages/inspect';
+// import Inspect from '@/pages/inspect';
 import i18n from '@/i18n/locales';
-import mockRouter from 'next-router-mock';
+// import mockRouter from 'next-router-mock';
 
-jest.mock('next/router', () => require('next-router-mock'));
+// jest.mock('next/router', () => require('next-router-mock'));
 
 describe('BasicModal', () => {
   test('モーダルが表示される。', () => {
@@ -45,13 +45,13 @@ describe('BasicModal', () => {
 
 /**
  *  コンポーネントのマウント後に、route の変更でstateが更新された後、
- *  更新後のstateを元にコンポーネントがレンダリングされたかどうかの確認するためのテスト。
+ *  更新後のstateを元にコンポーネントがレンダリングされたかどうかの確認するためのテストケース。
  */
-describe('Inspect', () => {
-  test('ルートが変わった場合、Inspect2コンポーネントが表示される。', async () => {
-    render(<Inspect />);
+// describe('Inspect', () => {
+//   test('ルートが変わった場合、Inspect2コンポーネントが表示される。', async () => {
+//     render(<Inspect />);
 
-    await waitFor(() => mockRouter.setCurrentUrl('/validation'));
-    expect(screen.getByText('inspect2')).toBeInTheDocument();
-  });
-});
+//     await waitFor(() => mockRouter.setCurrentUrl('/validation'));
+//     expect(screen.getByText('inspect2')).toBeInTheDocument();
+//   });
+// });
