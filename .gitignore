@@ -39,3 +39,6 @@ storybook-static/
 
 # cahce
 .eslintcache
+
+# jest
+coverage/
