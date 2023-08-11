@@ -1,4 +1,5 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import { userEvent } from '@storybook/testing-library';
 import { BasicModal } from '@/components/organisms/BasicModal';
 import '@testing-library/jest-dom';
 import { I18nextProvider } from 'react-i18next';
@@ -25,11 +26,14 @@ test('Propsで渡した値が表示される。', () => {
   expect(message).toBeInTheDocument();
 });
 
-test('閉じるボタンを押下してモーダルを閉じることができる。', () => {
+test('閉じるボタンを押下してモーダルを閉じることができる。', async () => {
   render(<BasicModal title="タイトル" message="メッセージ" />);
 
   const handleCloseButton = screen.getByText('閉じる');
-  fireEvent.click(handleCloseButton);
+
+  await waitFor(() => {
+    userEvent.click(handleCloseButton);
+  });
 
   // NOTE: 該当の要素が取得できないということはモーダルが閉じたことを意味する。
   expect(handleCloseButton).not.toBeInTheDocument();
