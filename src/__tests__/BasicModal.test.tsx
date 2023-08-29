@@ -30,10 +30,7 @@ test('閉じるボタンを押下してモーダルを閉じることができ�
   render(<BasicModal title="タイトル" message="メッセージ" />);
 
   const handleCloseButton = screen.getByText('閉じる');
-
-  await waitFor(() => {
-    userEvent.click(handleCloseButton);
-  });
+  await waitFor(() => userEvent.click(handleCloseButton));
 
   // NOTE: 該当の要素が取得できないということはモーダルが閉じたことを意味する。
   expect(handleCloseButton).not.toBeInTheDocument();
