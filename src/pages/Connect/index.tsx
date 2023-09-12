@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useUser } from '@/hooks/useUser';
 import { useLogin } from '@/hooks/auth';
 import { AxiosError } from 'axios';
@@ -6,13 +6,15 @@ import { css } from '@emotion/react';
 // import Error from '@/pages/_error';
 
 const Connect = () => {
-  const { data: user, isLoading } = useUser();
+  const { data: user, isFetching } = useUser();
   const fetchLogin = useLogin();
   const [loginMsg, setLoginMsg] = useState<string>('');
+  const [userName, setUserName] = useState('');
+  const [passWord, setPassword] = useState('');
 
-  const login = () => {
+  const login = async () => {
     fetchLogin.mutate(
-      { userName: 'carl', pass: 'password' },
+      { userName: userName, pass: passWord },
       {
         onSuccess: (res) => {
           if (res?.message) {
@@ -35,7 +37,17 @@ const Connect = () => {
     );
   };
 
-  if (isLoading) {
+  const onChangeUserName = (e: ChangeEvent<HTMLInputElement>) => {
+    setUserName(e.target.value);
+  };
+
+  const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
+  // isLoading が enabled = false だった場合、機能しないためisFetchingで暫定対応。
+  // https://github.com/TanStack/query/issues/3584
+  if (isFetching) {
     return <span>Loading...</span>;
   }
 
@@ -57,7 +69,20 @@ const Connect = () => {
         </>
       ) : (
         <>
-          <button css={css({ marginTop: '15px' })} onClick={() => login()}>
+          <div>
+            <div>userName</div>
+            <input type="text" onChange={(e) => onChangeUserName(e)} />
+          </div>
+          <div>
+            <div>pass</div>
+            <input type="password" onChange={(e) => onChangePassword(e)} />
+          </div>
+
+          <button
+            css={css({ marginTop: '15px' })}
+            data-testid={'loginButton'}
+            onClick={() => login()}
+          >
             ログイン
           </button>
           <div> {loginMsg}</div>

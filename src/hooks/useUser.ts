@@ -4,12 +4,12 @@ import { UserApiFactory } from '@/api/cli/user';
 
 const getUser = async (): Promise<User> => {
   const res = await UserApiFactory().loginUser();
-  console.log('res', res.data);
   return res.data;
 };
 
 const useUser = () => {
-  return useApi(['user'], async () => getUser());
+  const isAuth = localStorage.getItem('isAuth');
+  return useApi(['user'], async () => getUser(), { enabled: !!isAuth });
 };
 
 export { useUser };
