@@ -15,7 +15,7 @@ const config = {
   collectCoverageFrom: ['<rootDir>/src/components/organisms/**/*.{ts,tsx}'],
   testEnvironment: 'jest-environment-jsdom',
   moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/src/$1",
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
 };
 
