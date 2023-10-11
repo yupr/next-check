@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from 'react';
 import { useUser } from '@/hooks/useUser';
-import { useLogin } from '@/hooks/auth';
+import { useLogin } from '@/hooks/useLogin';
 import { AxiosError } from 'axios';
 import { css } from '@emotion/react';
 // import Error from '@/pages/_error';

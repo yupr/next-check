@@ -1,6 +1,6 @@
 import axios from '@/lib/axios';
 import { AxiosResponse } from 'axios';
-import { useApi } from '@/hooks/useApi';
+import { useApi } from '@/hooks/common/useApi';
 import { Post } from '@/types/index';
 
 const fetchPosts = async (page: number): Promise<Post[]> => {
@@ -10,10 +10,10 @@ const fetchPosts = async (page: number): Promise<Post[]> => {
   return res?.data;
 };
 
-const usePosts = (page: number) => {
+const usePost = (page: number) => {
   return useApi(['posts', page], async () => fetchPosts(page), {
     keepPreviousData: true,
   });
 };
 
-export { usePosts };
+export { usePost };

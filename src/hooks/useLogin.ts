@@ -1,4 +1,4 @@
-import { useOptimisticMutation } from '@/hooks/useApi';
+import { useOptimisticMutation } from '@/hooks/common/useApi';
 import { Login, LoginRes } from '@/types';
 import { AxiosResponse } from 'axios';
 import axios from '@/lib/axios';

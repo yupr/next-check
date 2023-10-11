@@ -1,4 +1,4 @@
-import { useApi } from '@/hooks/useApi';
+import { useApi } from '@/hooks/common/useApi';
 import { User } from '@/api/cli/user';
 import { UserApiFactory } from '@/api/cli/user';
 

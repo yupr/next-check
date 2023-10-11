@@ -2,12 +2,12 @@ import { useState, ChangeEvent } from 'react';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { Container, Box } from '@mui/system';
-import { usePosts } from '@/hooks/usePost';
+import { usePost } from '@/hooks/usePost';
 import { Post } from '@/types/index';
 
 const Paging = () => {
   const [page, setPage] = useState(1);
-  const { isLoading, isError, error, data, isPreviousData } = usePosts(page);
+  const { isLoading, isError, error, data, isPreviousData } = usePost(page);
 
   const updatePageNumber = (event: ChangeEvent<unknown>, pageNum: number) => {
     setPage(pageNum);

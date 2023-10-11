@@ -1,5 +1,5 @@
 import axios from '@/lib/axios';
-import { useApi } from '@/hooks/useApi';
+import { useApi } from '@/hooks/common/useApi';
 import { LabelViewInfo } from '@/types';
 
 const fetchLabelViewInfo = async (): Promise<LabelViewInfo> => {
