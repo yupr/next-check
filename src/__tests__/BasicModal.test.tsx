@@ -1,7 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { userEvent } from '@storybook/testing-library';
 import { BasicModal } from '@/components/organisms/BasicModal';
-import '@testing-library/jest-dom';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '@/i18n/locales';
 
