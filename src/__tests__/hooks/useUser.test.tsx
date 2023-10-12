@@ -1,9 +1,15 @@
 import { useUser } from '@/hooks/useUser';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
+import { FunctionComponent, ReactElement } from 'react';
+
+type Props = {
+  children: ReactElement;
+};
 
 const queryClient = new QueryClient();
-const wrapper = ({ children }: any) => (
+
+const wrapper: FunctionComponent<Props> = ({ children }) => (
   <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 );
 
