@@ -14,12 +14,9 @@ const wrapper: FunctionComponent<Props> = ({ children }) => (
 );
 
 test('レスポンス: 正常系', async () => {
-  jest.spyOn(Storage.prototype, 'setItem');
-  jest.spyOn(Storage.prototype, 'getItem').mockReturnValue('true');
+  localStorage.setItem('isAuth', 'true');
 
   const { result } = renderHook(() => useUser(), { wrapper });
-
-  await waitFor(() => result.current.isSuccess);
 
   // NOTE: tanstack/query 4.35.0 の場合は、こちらの方法以外取得できない。
   await waitFor(() => {
