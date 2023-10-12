@@ -12,7 +12,10 @@ const config = {
   // setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
 
   collectCoverage: true,
-  collectCoverageFrom: ['<rootDir>/src/components/organisms/**/*.{ts,tsx}'],
+  collectCoverageFrom: [
+    '<rootDir>/src/components/organisms/**/*.{ts,tsx}',
+    '<rootDir>/src/hooks/**/*.{ts,tsx}',
+  ],
   testEnvironment: 'jest-environment-jsdom',
   setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
   moduleNameMapper: {

@@ -1,7 +1,12 @@
 import { rest } from 'msw';
+import instance from '@/lib/axios';
+import { BaseUrl } from '@/lib/axios';
+
+// axiosのbaseURLが設定されていない場合、mswのprefixにそのURLを付与
+const isSetAxiosUrl = instance.defaults.url === BaseUrl;
 
 export const user = [
-  rest.get('/user', (req, res, ctx) => {
+  rest.get(isSetAxiosUrl ? '/user' : `${BaseUrl}/user`, (req, res, ctx) => {
     const isAuth = localStorage.getItem('isAuth');
 
     if (isAuth === 'true') {
