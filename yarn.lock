@@ -2955,12 +2955,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/bundle-analyzer@npm:^13.0.4":
-  version: 13.0.4
-  resolution: "@next/bundle-analyzer@npm:13.0.4"
+"@next/bundle-analyzer@npm:^14.0.4":
+  version: 14.0.4
+  resolution: "@next/bundle-analyzer@npm:14.0.4"
   dependencies:
     webpack-bundle-analyzer: 4.7.0
-  checksum: 3c5f0de65d40f5d195f0280d58afec6d41c83923202eb3ef863a29e5c71c4f62b91485139bae3ddb8805a93fc15050bfa7e880062a680da0bf2245fec86ad292
+  checksum: 46224e08b20dffd0ff02d210ed527deddc189f054fb1501bca6d861f30c2bbcf5ede50f50c61401e2e865aede6ee736c1ce4ca0094ac14c839c2860cb13251ab
   languageName: node
   linkType: hard
 
@@ -14615,7 +14615,7 @@ __metadata:
     "@mdx-js/react": ^1.6.22
     "@mui/icons-material": ^5.10.15
     "@mui/material": ^5.10.15
-    "@next/bundle-analyzer": ^13.0.4
+    "@next/bundle-analyzer": ^14.0.4
     "@openapitools/openapi-generator-cli": ^2.5.2
     "@storybook/addon-actions": ^6.5.14
     "@storybook/addon-docs": ^6.5.14
