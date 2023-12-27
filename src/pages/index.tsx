@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import styles from '@/styles/Home.module.scss';
 
+// TODO: 後でリンクを修正
 const Home: NextPage = () => {
   return (
     <>
@@ -18,11 +19,6 @@ const Home: NextPage = () => {
             <Link href="/connect" className={styles.card}>
               <h2>Connect &rarr;</h2>
               <p>For check api connect</p>
-            </Link>
-
-            <Link href="/validation" className={styles.card}>
-              <h2>Validation &rarr;</h2>
-              <p>For check react-hook-form</p>
             </Link>
 
             <Link href="/pixi" className={styles.card}>
