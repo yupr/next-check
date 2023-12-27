@@ -10,8 +10,6 @@
     "export": "next build && next export",
     "delete:sourcemap": "find out/ -name '*.map' -delete",
     "test": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "analyze": "ANALYZE=true yarn build",
     "lint": "eslint '**/*.{ts,tsx}' --cache",
