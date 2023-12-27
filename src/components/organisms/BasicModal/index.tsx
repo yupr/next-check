@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { Button } from '@mui/material';
-import { useTranslation } from 'react-i18next';
 
 const style = {
   position: 'absolute' as const,
@@ -25,7 +24,6 @@ interface Props {
 export const BasicModal = ({ title, message }: Props) => {
   const [open, setOpen] = useState(true);
   const handleClose = () => setOpen(false);
-  const { t } = useTranslation();
 
   return (
     <div>
@@ -43,7 +41,7 @@ export const BasicModal = ({ title, message }: Props) => {
             {message}
           </Typography>
           <Box sx={{ width: '100%', display: 'flex', justifyContent: 'end' }}>
-            <Button onClick={handleClose}>{t('modal.close')}</Button>
+            <Button onClick={handleClose}>閉じる</Button>
           </Box>
         </Box>
       </Modal>

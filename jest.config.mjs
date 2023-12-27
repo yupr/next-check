@@ -17,7 +17,6 @@ const config = {
     '<rootDir>/src/hooks/**/*.{ts,tsx}',
   ],
   testEnvironment: 'jest-environment-jsdom',
-  setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },

@@ -6,7 +6,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Head from 'next/head';
 import { initMocks } from '@/mocks';
-import '@/i18n/locales';
 import { useEffect, useState } from 'react';
 
 const queryClient = new QueryClient({
