@@ -7,13 +7,12 @@ let labelView: LabelView | null;
 
 const Canvas = () => {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [name, setName] = useState('');
   const { data: labelViewInfo } = useLabelView();
+  const [isSetup, setSetup] = useState(false);
 
   useEffect(() => {
-    if (!labelViewInfo) return;
-
     labelView = new LabelView(ref.current, labelViewInfo);
+    setSetup(!!labelView);
 
     return () => {
       if (labelView) {
@@ -22,25 +21,23 @@ const Canvas = () => {
     };
   }, [labelViewInfo]);
 
-  useEffect(() => {
-    if (labelView) labelView.changeText(name);
-  }, [name]);
-
   const onChangeName = (value: string) => {
-    setName(value);
+    labelView?.changeText(value);
   };
 
   return (
     <>
       <div className={styles.pixi}>
         <div ref={ref} />
-        <div className={styles.pixi__input}>
-          <input
-            type="text"
-            placeholder="何か入力する"
-            onChange={(e) => onChangeName(e.target.value)}
-          />
-        </div>
+        {isSetup && (
+          <div className={styles.pixi__input}>
+            <input
+              type="text"
+              placeholder="何か入力する"
+              onChange={(e) => onChangeName(e.target.value)}
+            />
+          </div>
+        )}
       </div>
     </>
   );

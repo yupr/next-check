@@ -1,4 +1,4 @@
-import { Renderer, Text, Container, Sprite, TextStyle, Texture } from 'pixi.js';
+import { Assets, Renderer, Text, Container, Sprite, TextStyle } from 'pixi.js';
 import { Ticker } from '@pixi/core';
 import { LabelViewInfo } from '@/types';
 
@@ -20,50 +20,64 @@ export class LabelView {
 
   private containerSize: { width: number; height: number };
 
-  private labelViewInfo: LabelViewInfo;
+  private labelViewInfo?: LabelViewInfo;
 
-  constructor(element: HTMLDivElement | null, labelViewInfo: LabelViewInfo) {
+  // TODO: canvasが描画される前にレンダリングされているため、
+  // 画面の表示に係る要素はcanvasオブジェクトが表示できるようになったタイミングでレンダリングする。
+  constructor(element: HTMLDivElement | null, labelViewInfo?: LabelViewInfo) {
     this.element = element;
-    this.containerSize = labelViewInfo.container?.size;
     this.labelViewInfo = labelViewInfo;
+
+    this.containerSize = labelViewInfo?.container.size ?? {
+      width: 1192,
+      height: 580,
+    };
 
     this.renderer = new Renderer({
       width: this.containerSize.width,
       height: this.containerSize.height,
-      backgroundColor: 0x10bb99,
       backgroundAlpha: 1,
       antialias: true,
-      resolution: 1,
+      // backgroundColor: 'red', // 表示のラグ確認用。
+      // resolution: 1, // チラツキの原因。
     });
 
     this.container = new Container();
     this.container.sortableChildren = true; // zIndexの有効化
 
-    this.canvas = this.renderer.view as HTMLCanvasElement;
-    this.element?.appendChild(this.canvas);
-
     this.ticker = new Ticker();
     this.ticker.start();
 
-    this.render();
+    // 事前にリソースの追加を行ってもラグが生じている.
+    Assets.add('bg_particles', '/img/bg_particles.png');
+
+    // TODO: 2度手間だが、型の不整合が起きるのでそれが解消できたら修正。
+    this.canvas = this.renderer.view as HTMLCanvasElement;
+    this.element?.appendChild(this.canvas);
     this.keepAspectResize();
+
     this.setup();
+    this.render();
   }
 
   render() {
-    this.ticker.add(() => {
-      this.renderer.render(this.container);
-    });
+    if (this.ticker) {
+      this.ticker.add(() => {
+        this.renderer.render(this.container);
+      });
+    }
   }
 
-  setup() {
-    const sprite = new Sprite(Texture.from('/img/bg_particles.png'));
+  async setup() {
+    const textures = await Assets.load('bg_particles');
+    const sprite = Sprite.from(textures);
     sprite.zIndex = 1;
     this.container.addChild(sprite);
   }
 
   changeText(_name: string) {
     if (!this.labelViewInfo) return;
+
     if (this.nameText) {
       this.nameText.destroy();
     }
@@ -84,11 +98,11 @@ export class LabelView {
     this.container.addChild(this.nameText);
   }
 
-  toDataURL() {
-    // 一回噛ませないと生成されない場合がある
-    // this.renderer.render(this.container);
-    // const dataURL = this.renderer.view.toDataURL('image/jpeg');
-  }
+  // toDataURL() {
+  //   // 一回噛ませないと生成されない場合がある
+  //   // this.renderer.render(this.container);
+  //   // const dataURL = this.renderer.view.toDataURL('image/jpeg');
+  // }
 
   // 縦横比を保ったまま矩形の大きさに合わせてリサイズ
   keepAspectResize() {
