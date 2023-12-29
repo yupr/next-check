@@ -1,12 +1,14 @@
+import { isClient } from '@/utils';
+
 const initMocks = async () => {
-  if (typeof window === 'undefined') {
-    const { server } = await import('./server');
-    server.listen();
-  } else {
+  if (isClient) {
     const { worker } = await import('./browser');
     worker.start({
       onUnhandledRequest: 'bypass',
     });
+  } else {
+    const { server } = await import('./server');
+    server.listen();
   }
 };
 
