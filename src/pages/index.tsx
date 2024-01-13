@@ -16,12 +16,12 @@ const Home: NextPage = () => {
           <h1 className={styles.title}>Link</h1>
 
           <div className={styles.grid}>
-            <Link href="/connect" className={styles.card}>
+            <Link href="/inspect/connect" className={styles.card}>
               <h2>Connect &rarr;</h2>
               <p>For check api connect</p>
             </Link>
 
-            <Link href="/pixi" className={styles.card}>
+            <Link href="/inspect/pixi" className={styles.card}>
               <h2>Pixi</h2>
               <p>render canvas</p>
             </Link>
