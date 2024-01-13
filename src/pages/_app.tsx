@@ -5,7 +5,6 @@ import { CountProvider } from 'src/lib/contexts/CountContext';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Head from 'next/head';
-import { initMocks } from '@/mocks';
 import { useEffect, useState } from 'react';
 
 const queryClient = new QueryClient({
@@ -17,19 +16,20 @@ const queryClient = new QueryClient({
   },
 });
 
-const isApiMock = process.env.NEXT_PUBLIC_API_MOCKING === 'true';
-
 const App = ({ Component, pageProps }: AppProps) => {
-  const [shouldRender, setShouldRender] = useState(!isApiMock);
+  const [shouldRender, setShouldRender] = useState(
+    process.env.NEXT_PUBLIC_API_MOCKING !== 'true'
+  );
 
   useEffect(() => {
-    const setup = async () => {
-      await initMocks();
-      setShouldRender(true);
-    };
-
-    if (isApiMock) {
-      setup();
+    // 環境変数を変数を介して条件式にした場合、条件の結果がfalseだったとしても、その中の処理がバンドルされる。
+    // また関数を作成した時点で、関数の呼び出しの有無に問わずバンドルされる。
+    if (process.env.NEXT_PUBLIC_API_MOCKING === 'true') {
+      // TODO: 2度呼ばれているので、mockの起動を確認するスクリプトを書いて、無駄な呼び出しを止める。
+      import('../mocks/browser').then((res) => {
+        res.worker.start();
+        setShouldRender(true);
+      });
     }
   }, []);
 
