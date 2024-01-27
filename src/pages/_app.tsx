@@ -22,6 +22,7 @@ const App = ({ Component, pageProps }: AppProps) => {
   );
 
   useEffect(() => {
+    // NOTE: 検証によって判明したバンドル時の注意点
     // 環境変数を変数を介して条件式にした場合、条件の結果がfalseだったとしても、その中の処理がバンドルされる。
     // また関数を作成した時点で、関数の呼び出しの有無に問わずバンドルされる。
     if (process.env.NEXT_PUBLIC_API_MOCKING === 'true') {
