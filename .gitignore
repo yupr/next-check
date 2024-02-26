@@ -29,7 +29,6 @@ yarn-error.log*
 storybook-static/
 
 # yarn
-.pnp.*
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
