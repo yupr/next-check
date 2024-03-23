@@ -11,11 +11,7 @@ const Pixi = () => {
     ssr: false,
   });
 
-  return (
-    <>
-      <Canvas />
-    </>
-  );
+  return <Canvas />;
 };
 
 export default Pixi;

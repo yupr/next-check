@@ -1,5 +1,5 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
-import styles from './index.module.scss';
+import { css } from '@emotion/react';
 
 interface formInput {
   userName: string;
@@ -22,22 +22,61 @@ const Validation = () => {
   // 再度レンダリングが走り、入力時のデータが getValue で取得できるのでそれを返している。
   // onSubmit関数で更新後のデータを取得できなかったのは、関数を実行した後に再レンダリングされたため。
 
+  const spanStyles = css({
+    lineHeight: 2,
+    textAlign: 'left',
+    display: 'block',
+    marginBottom: '13px',
+    marginTop: '20px',
+    color: 'black',
+    fontSize: '14px',
+    fontWeight: 400,
+  });
+
+  const inputStyles = css({
+    width: '100%',
+    display: 'flex',
+    borderRadius: '4px',
+    border: '1px solid black',
+    padding: '15px 15px',
+    marginBottom: '10px',
+  });
+
+  const pStyles = css({
+    color: 'red',
+    '&::before': {
+      display: 'inline',
+      content: '"⚠ "',
+    },
+  });
+
+  const submitStyles = css({
+    background: '#ec5990',
+    color: 'white',
+    textTransform: 'uppercase',
+    border: 'none',
+    marginTop: '30px',
+    padding: '20px',
+    fontSize: '16px',
+    fontWeight: 100,
+    letterSpacing: '10px',
+  });
+
   return (
-    <>
-      <div className={styles.validation}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <span>userName:</span>
-          <input {...register('userName', { required: true })} />
-          {errors.userName && <p>ユーザーネームの入力は必須です</p>}
+    <form
+      css={css({ maxWidth: '500px', margin: '0 auto' })}
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <span css={spanStyles}>userName:</span>
+      <input css={inputStyles} {...register('userName', { required: true })} />
+      {errors.userName && <p css={pStyles}>ユーザーネームの入力は必須です</p>}
 
-          <span>password:</span>
-          <input {...register('password', { required: true })} />
-          {errors.password && <p>パスワードの入力は必須です</p>}
+      <span css={spanStyles}>password:</span>
+      <input css={inputStyles} {...register('password', { required: true })} />
+      {errors.password && <p css={pStyles}>パスワードの入力は必須です</p>}
 
-          <input className={styles.validation__submit} type="submit" />
-        </form>
-      </div>
-    </>
+      <input css={submitStyles} type="submit" />
+    </form>
   );
 };
 
