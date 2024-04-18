@@ -2117,15 +2117,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/match-sorter-utils@npm:^8.7.0":
-  version: 8.8.4
-  resolution: "@tanstack/match-sorter-utils@npm:8.8.4"
-  dependencies:
-    remove-accents: "npm:0.4.2"
-  checksum: 10/25a109c72414ce439dba914f0756b52ef29e1d0a008f9c0f3f79af24cdf8a129500c9304a9877f5c9cd2713e394915297cfc07c249b8e1f78bd2f026643de0b8
-  languageName: node
-  linkType: hard
-
 "@tanstack/query-core@npm:4.35.0":
   version: 4.35.0
   resolution: "@tanstack/query-core@npm:4.35.0"
@@ -2133,18 +2124,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-query-devtools@npm:^4.35.0":
-  version: 4.35.0
-  resolution: "@tanstack/react-query-devtools@npm:4.35.0"
+"@tanstack/query-devtools@npm:5.28.10":
+  version: 5.28.10
+  resolution: "@tanstack/query-devtools@npm:5.28.10"
+  checksum: 10/3caa49e83507abc1fb5d44283738d6c5d88fd4b7d6f6ec2c26aa77d938157679fc99da51e1f832295e76940d9d90f793549ae927d11bfba67fcc2dfeaf0d5a43
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query-devtools@npm:^5.29.2":
+  version: 5.29.2
+  resolution: "@tanstack/react-query-devtools@npm:5.29.2"
   dependencies:
-    "@tanstack/match-sorter-utils": "npm:^8.7.0"
-    superjson: "npm:^1.10.0"
-    use-sync-external-store: "npm:^1.2.0"
+    "@tanstack/query-devtools": "npm:5.28.10"
   peerDependencies:
-    "@tanstack/react-query": ^4.35.0
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 10/e1672772cd40217874913a89a951bfec63bba03f650b0a3df637fbea79c5dec610c250f2703c5172e92560fc0b3c7ed379c671f7459d2f3364796278d436a866
+    "@tanstack/react-query": ^5.29.2
+    react: ^18.0.0
+  checksum: 10/83226e7c5eefa1faddcf1f1ddcf65137f3926468d0e029bbd4bae124606e00ff11641cd9624f3bc2b07159ea6333752c2382359bfab107b98d83ceb1f56bdc30
   languageName: node
   linkType: hard
 
@@ -3949,15 +3944,6 @@ __metadata:
   version: 0.4.2
   resolution: "cookie@npm:0.4.2"
   checksum: 10/2e1de9fdedca54881eab3c0477aeb067f281f3155d9cfee9d28dfb252210d09e85e9d175c0a60689661feb9e35e588515352f2456bc1f8e8db4267e05fd70137
-  languageName: node
-  linkType: hard
-
-"copy-anything@npm:^3.0.2":
-  version: 3.0.2
-  resolution: "copy-anything@npm:3.0.2"
-  dependencies:
-    is-what: "npm:^4.1.6"
-  checksum: 10/4920cfaaa48eeaef4b903c8e704434ec43962de393d3ed1b695040ae77a79cb9a9528f803cb484a45636edbffe1932437fa126d18cae4599e944b66718988465
   languageName: node
   linkType: hard
 
@@ -6342,13 +6328,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-what@npm:^4.1.6":
-  version: 4.1.7
-  resolution: "is-what@npm:4.1.7"
-  checksum: 10/ebda5b1c817bd0c21ecfc7ad3ea18351f6afeb5ea8dbb0b61a1cdb7c27b6dbe27c9073cd2dba8ce0739666f33a0438aabdc2c7cb12d1bfc3169beaf060c97e83
-  languageName: node
-  linkType: hard
-
 "is-wsl@npm:^2.2.0":
   version: 2.2.0
   resolution: "is-wsl@npm:2.2.0"
@@ -7705,7 +7684,7 @@ __metadata:
     "@next/bundle-analyzer": "npm:^14.1.0"
     "@openapitools/openapi-generator-cli": "npm:^2.5.2"
     "@tanstack/react-query": "npm:^4.35.0"
-    "@tanstack/react-query-devtools": "npm:^4.35.0"
+    "@tanstack/react-query-devtools": "npm:^5.29.2"
     "@testing-library/jest-dom": "npm:^5.16.5"
     "@types/express": "npm:^4.17.14"
     "@types/node": "npm:^18.11.9"
@@ -8751,13 +8730,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remove-accents@npm:0.4.2":
-  version: 0.4.2
-  resolution: "remove-accents@npm:0.4.2"
-  checksum: 10/25d5c84f1355be60b42f8ad8a1ba29c2413dead138a9e2a88633e4fc94a1b953afe306dd27479125aef231d267482c54d292e558b04ec100fb9adf063ccbf75a
-  languageName: node
-  linkType: hard
-
 "require-directory@npm:^2.1.1":
   version: 2.1.1
   resolution: "require-directory@npm:2.1.1"
@@ -9496,15 +9468,6 @@ __metadata:
   version: 4.1.3
   resolution: "stylis@npm:4.1.3"
   checksum: 10/0065b6954f7007ded81598d8390c92682dd312f4d9a7f928e70190f716ee4019e29f5dd364016f8428b8ef9b5b6b950b2be717d76a7d813302cdbf1321084374
-  languageName: node
-  linkType: hard
-
-"superjson@npm:^1.10.0":
-  version: 1.11.0
-  resolution: "superjson@npm:1.11.0"
-  dependencies:
-    copy-anything: "npm:^3.0.2"
-  checksum: 10/c621bd311ef1e08997fea3e87a47b23614690bddb27d5a2990669985f3aae338967813c3c25543e696bd718292cc0b16d8e1c0c2e0832bcf7f945e8d1db975ee
   languageName: node
   linkType: hard
 
