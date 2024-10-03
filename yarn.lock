@@ -5601,13 +5601,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gsap@npm:^3.11.3":
-  version: 3.11.3
-  resolution: "gsap@npm:3.11.3"
-  checksum: 10/c46aea91d4bce219dbaa9ca3fad0a066386f4e5cedec94d3c350a78f5a412ea83b98fe738b3470a3a1898d6452a2926b02615fa5680adc3de02d83c6abfd560a
-  languageName: node
-  linkType: hard
-
 "gzip-size@npm:^6.0.0":
   version: 6.0.0
   resolution: "gzip-size@npm:6.0.0"
@@ -7714,7 +7707,6 @@ __metadata:
     eslint-config-prettier: "npm:^8.5.0"
     eslint-plugin-storybook: "npm:^0.6.8"
     express: "npm:^4.18.2"
-    gsap: "npm:^3.11.3"
     http-proxy-middleware: "npm:^2.0.6"
     husky: "npm:^8.0.2"
     jest: "npm:^29.7.0"

@@ -1,6 +1,9 @@
 import type { NextPage } from 'next';
 import { Box, Container, Grid, Paper, Stack, Typography } from '@mui/material';
 
+// 以下のサイトをMUIを用いて実装
+// https://demos.creative-tim.com/material-kit-react/#/presentation
+
 const Home: NextPage = () => {
   return (
     <Container maxWidth="xl">
