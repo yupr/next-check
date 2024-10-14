@@ -7,8 +7,8 @@ import { Box, Container, Grid, Paper, Stack, Typography } from '@mui/material';
 const Home: NextPage = () => {
   return (
     <Container maxWidth="xl">
-      <Stack direction={'row'}>
-        <Box height={500} width={1300} display="flex" alignItems="center">
+      <Stack direction={'row'} justifyContent={'center'}>
+        <Box height={500} width={1300}>
           <img
             src="/img/pexels-printexstar.webp"
             width="100%"
@@ -34,8 +34,8 @@ const Home: NextPage = () => {
           }}
         >
           <Grid
-            width={'80%'}
             container
+            width={'80%'}
             marginTop={'30px'}
             spacing={3}
             justifyContent={'center'}
